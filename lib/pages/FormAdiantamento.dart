@@ -50,7 +50,7 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
       SelectedDataFim = new DateTime(int.parse(widget.adiantamento.DataFim.split("/")[2]), int.parse(widget.adiantamento.DataFim.split("/")[1]), int.parse(widget.adiantamento.DataFim.split("/")[0]));
 
     if (widget.adiantamento.ValorApontado != null)
-      ValorApontadoController.value = TextEditingValue(text: (widget.adiantamento.ValorApontado.toString().length <= 4 ? "${widget.adiantamento.ValorApontado.toString()}0" : widget.adiantamento.ValorApontado.toString()));
+      ValorApontadoController.updateValue(widget.adiantamento.ValorApontado);
 
     if (widget.adiantamento.Justificativa != null)
       JustificativaController.text = widget.adiantamento.Justificativa;

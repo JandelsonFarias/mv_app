@@ -68,7 +68,7 @@ class _SelecionarProjetoWorkOfflineState extends State<SelecionarProjetoWorkOffl
       http.Response response;
       String ProjectUID = projeto.ProjectUID;
 
-      response = await http.get(baseApiURL + "Projeto/GetProjetoInformacoes/?ProjectUID=$ProjectUID");
+      response = await http.get(baseApiURL + "Projeto/GetProjetoInformacoes/?ProjectUID=$ProjectUID&ResourceUID=${usuarioLogado.ResourceUID}");
 
       if (response.statusCode == 200){
         Map map = json.decode(response.body);
@@ -80,6 +80,26 @@ class _SelecionarProjetoWorkOfflineState extends State<SelecionarProjetoWorkOffl
           despesa.NomeDespesa = item["NomeDespesa"];
 
           await helperDB.saveDespesa(despesa);
+        }
+
+        for (var item in map["Tasks"]){
+            ApontamentoTask apontamentoTask = ApontamentoTask();
+            apontamentoTask.ProjectUID = projetoSelecionado.ProjectUID;
+            apontamentoTask.TaskUID = item["TaskUID"];
+            apontamentoTask.TaskName = item["TaskName"];
+
+            for (var item_assignment in item["Assignments"]){
+              ApontamentoAssignment apontamentoAssignment = ApontamentoAssignment();
+              apontamentoAssignment.TaskUID = apontamentoTask.TaskUID;
+              apontamentoAssignment.AssignmentUID = item_assignment["AssignmentUID"];
+              apontamentoAssignment.TrabalhoPrevisto = item_assignment["TrabalhoPrevisto"];
+              apontamentoAssignment.strTrabalhoPrevisto = item_assignment["strTrabalhoPrevisto"];
+              apontamentoAssignment.TimeByDay = item_assignment["TimeByDay"];
+
+              await helperDB.saveApontamentoAssignment(apontamentoAssignment);
+            }
+
+            await helperDB.saveApontamentoTask(apontamentoTask);
         }
 
         await loading.hide();

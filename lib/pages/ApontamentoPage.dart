@@ -3,59 +3,55 @@ import 'dart:convert';
 import 'package:alert/alert.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mvapp/helpers/constants.dart';
 import 'package:mvapp/helpers/db.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-import 'FormAdiantamento.dart';
 import 'package:http/http.dart' as http;
 import 'package:data_connection_checker/data_connection_checker.dart';
 
-class AdiantamentoPage extends StatefulWidget {
+import 'FormApontamento.dart';
+
+class ApontamentoPage extends StatefulWidget {
   @override
-  _AdiantamentoPageState createState() => _AdiantamentoPageState();
+  _ApontamentoPageState createState() => _ApontamentoPageState();
 }
 
-class _AdiantamentoPageState extends State<AdiantamentoPage> {
+class _ApontamentoPageState extends State<ApontamentoPage> {
 
   bool hasConnection = false;
 
   ProgressDialog loading;
 
-  Usuario usuarioLogado = Usuario();
-
-  var currency = new NumberFormat.currency(locale: "pt_BR", symbol: "R\$");
-
   HelperDB helperDB = HelperDB();
 
-  List<Adiantamento> adiantamentos = [];
-  List<Projeto> AD_projetos = [];
+  Usuario usuarioLogado = Usuario();
 
-  Adiantamento adiantamento_removido;
-  int adiantamento_removido_posicao;
+  List<Apontamento> apontamentos = [];
+  List<Projeto> AP_projetos = [];
 
-  void loadAdiantamentos(){
-    helperDB.getAllAdiantamentos().then((_adiantamentos){
+  Apontamento apontamento_removido;
+  int apontamento_removido_posicao;
 
-      _adiantamentos.sort((a, b) => a.AdiantamentoCodigo.compareTo(b.AdiantamentoCodigo));
+  void loadApontamentos(){
+    helperDB.getAllApontamentos().then((_apontamentos){
 
       List<Projeto> _temp_projetos = [];
 
-      for (Adiantamento ad in _adiantamentos){
+      for (Apontamento ap in _apontamentos){
 
-        Projeto p = _temp_projetos.firstWhere((x) => x.ProjectUID == ad.ProjectUID, orElse: () => null);
+        Projeto p = _temp_projetos.firstWhere((x) => x.ProjectUID == ap.ProjectUID, orElse: () => null);
 
         if (p == null) {
           Projeto projeto = Projeto();
-          projeto.ProjectUID = ad.ProjectUID;
-          projeto.NomeProjeto = ad.NomeProjeto;
+          projeto.ProjectUID = ap.ProjectUID;
+          projeto.NomeProjeto = ap.NomeProjeto;
           _temp_projetos.add(projeto);
         }
       }
 
       setState(() {
-        adiantamentos = _adiantamentos;
-        AD_projetos = _temp_projetos;
+        apontamentos = _apontamentos;
+        AP_projetos = _temp_projetos;
       });
     });
   }
@@ -73,16 +69,30 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
     });
   }
 
-  Widget _builderListViewAdiantamentos(){
+  Widget _buildContainerNoData(){
+    return Container(
+      alignment: Alignment.center,
+      child: Text(
+          "Nenhum Apontamento Cadastrado",
+          style: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black26
+          )
+      ),
+    );
+  }
+
+  Widget _builderListViewApontamentos(){
     return ListView.builder(
         itemBuilder: (context, index){
-          List<Adiantamento> grouped = adiantamentos.where((x) => x.ProjectUID == AD_projetos[index].ProjectUID).toList();
+          List<Apontamento> grouped = apontamentos.where((x) => x.ProjectUID == AP_projetos[index].ProjectUID).toList();
           return Container(
             padding: EdgeInsets.all(10.0),
             child: Column(
               children: <Widget>[
                 Text(
-                  "${AD_projetos[index].NomeProjeto}",
+                  "${AP_projetos[index].NomeProjeto}",
                   style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.bold
@@ -92,7 +102,7 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                 ListView.builder(
                   itemBuilder: (context, index){
                     return Dismissible(
-                      key: Key(adiantamentos[index].AdiantamentoUID),
+                      key: Key(apontamentos[index].ApontamentoUID),
                       background: Container(
                         color: Colors.red,
                         child: Align(
@@ -106,23 +116,23 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                       direction: DismissDirection.startToEnd,
                       onDismissed: (direction){
                         setState(() {
-                          adiantamento_removido = grouped[index];
-                          adiantamento_removido_posicao = adiantamentos.indexWhere((x) => x.AdiantamentoUID == adiantamento_removido.AdiantamentoUID);
-                          adiantamentos.removeAt(adiantamento_removido_posicao);
+                          apontamento_removido = grouped[index];
+                          apontamento_removido_posicao = apontamentos.indexWhere((x) => x.ApontamentoUID == apontamento_removido.ApontamentoUID);
+                          apontamentos.removeAt(apontamento_removido_posicao);
 
-                          helperDB.deleteAdiantamentoByUID(adiantamento_removido.AdiantamentoUID).then((e){
-                            loadAdiantamentos();
+                          helperDB.deleteApontamentoByUID(apontamento_removido.ApontamentoUID).then((e){
+                            loadApontamentos();
                           });
 
                           final snack = SnackBar(
-                              content: Text("Adiantamento removido!"),
+                              content: Text("Apontamento removido!"),
                               action: SnackBarAction(
                                 label: "Desfazer",
                                 onPressed: (){
                                   setState(() {
-                                    adiantamentos.insert(adiantamento_removido_posicao, adiantamento_removido);
-                                    helperDB.saveAdiantamento(adiantamento_removido).then((e){
-                                      loadAdiantamentos();
+                                    apontamentos.insert(apontamento_removido_posicao, apontamento_removido);
+                                    helperDB.saveApontamento(apontamento_removido).then((e){
+                                      loadApontamentos();
                                     });
                                   });
                                 },
@@ -138,9 +148,9 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                       child: GestureDetector(
                         onTap: (){
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => FormAdiantamento(grouped[index]))
+                              MaterialPageRoute(builder: (context) => FormApontamento(grouped[index]))
                           ).then((e){
-                            loadAdiantamentos();
+                            loadApontamentos();
                           });
                         },
                         child: Card(
@@ -151,15 +161,15 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text("AD - ${grouped[index].AdiantamentoCodigo}",
+                                    Text("${grouped[index].TaskName}",
                                       style: TextStyle(fontSize: 15.0),
                                     ),
                                     SizedBox(height: 5.0),
-                                    Text("De ${grouped[index].DataInicio} até ${grouped[index].DataFim}",
+                                    Text("${grouped[index].NewTimeByDay}",
                                       style: TextStyle(fontSize: 14.0),
                                     ),
                                     SizedBox(height: 5.0),
-                                    Text(currency.format(grouped[index].ValorApontado),
+                                    Text("${grouped[index].HorasApontadas}",
                                       style: TextStyle(fontSize: 14.0),
                                     )
                                   ],
@@ -171,9 +181,7 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                                   if (await confirm(
                                       context,
                                       title: Text("Atenção"),
-                                      content: SingleChildScrollView(
-                                        child: Text("Tem certeza que deseja enviar a AD ${grouped[index].AdiantamentoCodigo}? Após enviada, será removida do seu dispositivo e não poderá mais ser editada.\nComo colaborador desta empresa comprometo-me a prestar contas dos valores recebidos para despesas de viagens a trabalho, com as respectivas notas fiscais até ${DateTime.now().day}/${DateTime.now().month == 12 ? 1 : DateTime.now().month + 1}/${DateTime.now().year}, após o retorno ao meu local de trabalho. Autorizo ainda em caso de não prestação de contas dentro do prazo previsto, o desconto de valores totais ou parciais correspondentes ao adiantamento recebido, em meu salário do mês, respeitados os devidos limites legais."),
-                                      ),
+                                      content: Text("Tem certeza que deseja enviar este apontamento de horas? Após enviado, será removida do seu dispositivo e não poderá mais ser editado."),
                                       textOK: Text("Sim"),
                                       textCancel: Text("Não")
                                   )) {
@@ -181,7 +189,7 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                                     await loading.show();
 
                                     http.post(
-                                        baseApiURL + "Adiantamento/SalvarAdiantamento",
+                                        baseApiURL + "Apontamento/SaveApontamento",
                                         headers: <String, String>{
                                           'Content-Type': 'application/json; charset=UTF-8',
                                         },
@@ -197,7 +205,7 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                                           String erros = map["erros"].toString().replaceAll(";", "\n");
 
                                           AlertDialog alert = AlertDialog(
-                                            title: Text("AD não enviada."),
+                                            title: Text("Apontamento não enviado."),
                                             content: Text(erros),
                                             actions: [
                                               FlatButton(
@@ -217,10 +225,10 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                                           );
                                         }
                                         else  {
-                                          Alert(message: 'AD enviado com sucesso!').show();
+                                          Alert(message: 'Apontamento enviado com sucesso!').show();
 
-                                          helperDB.deleteAdiantamentoByUID(grouped[index].AdiantamentoUID).then((e){
-                                            loadAdiantamentos();
+                                          helperDB.deleteApontamentoByUID(grouped[index].ApontamentoUID).then((e){
+                                            loadApontamentos();
                                           });
                                         }
                                       }
@@ -253,21 +261,7 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
             ),
           );
         },
-        itemCount: AD_projetos.length);
-  }
-
-  Widget _buildContainerNoData(){
-    return Container(
-      alignment: Alignment.center,
-      child: Text(
-          "Nenhum Adiantamento Cadastrado",
-          style: TextStyle(
-              fontSize: 17.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black26
-          )
-      ),
-    );
+        itemCount: AP_projetos.length);
   }
 
   @override
@@ -275,7 +269,7 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
     super.initState();
     verifyConnection();
     loadUsuarioLogado();
-    loadAdiantamentos();
+    loadApontamentos();
   }
 
   @override
@@ -292,29 +286,47 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
     );
 
     return Scaffold(
-      body: adiantamentos.length > 0 ? _builderListViewAdiantamentos() : _buildContainerNoData(),
+      body: apontamentos.length > 0 ? _builderListViewApontamentos() : _buildContainerNoData(),
       floatingActionButton: FloatingActionButton(
         child: Icon(
             Icons.add
         ),
         backgroundColor: Color.fromRGBO(36, 177, 139, 1),
         onPressed: (){
-          Adiantamento ad = Adiantamento();
-
-          if (adiantamentos.length > 0){
-            adiantamentos.sort((a, b) => a.AdiantamentoCodigo.compareTo(b.AdiantamentoCodigo));
-            ad.AdiantamentoCodigo = (int.parse(adiantamentos.last.AdiantamentoCodigo) + 1).toString().padLeft(4, "0");
-          }
-          else
-            ad.AdiantamentoCodigo = (1).toString().padLeft(4, "0");
+          Apontamento ap = Apontamento();
 
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FormAdiantamento(ad))
+              MaterialPageRoute(builder: (context) => FormApontamento(ap))
           ).then((e){
-            loadAdiantamentos();
+            loadApontamentos();
           });
         },
       ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

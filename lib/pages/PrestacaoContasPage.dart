@@ -9,6 +9,7 @@ import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:mvapp/helpers/constants.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 
 class PrestacaoContasPage extends StatefulWidget {
   @override
@@ -17,11 +18,13 @@ class PrestacaoContasPage extends StatefulWidget {
 
 class _PrestacaoContasPageState extends State<PrestacaoContasPage> {
 
+  bool hasConnection = false;
+
   ProgressDialog loading;
 
   Usuario usuarioLogado = Usuario();
 
-  var currency = new NumberFormat.currency(locale: "pt_BR", symbol: "RS");
+  var currency = new NumberFormat.currency(locale: "pt_BR", symbol: "R\$");
 
   HelperDB helperDB = HelperDB();
 
@@ -43,7 +46,7 @@ class _PrestacaoContasPageState extends State<PrestacaoContasPage> {
           _temp.add(pc);
         }
         else {
-         _pc.Valor += pc.Valor;
+          _pc.Valor += pc.Valor;
         }
 
         Projeto p = _temp_projetos.firstWhere((x) => x.ProjectUID == pc.ProjectUID, orElse: () => null);
@@ -69,9 +72,17 @@ class _PrestacaoContasPageState extends State<PrestacaoContasPage> {
     });
   }
 
+  void verifyConnection() async {
+    bool con = await DataConnectionChecker().hasConnection;
+    setState(()  {
+      hasConnection = con;
+    });
+  }
+
   @override
   void initState(){
     super.initState();
+    verifyConnection();
     loadUsuarioLogado();
     loadPrescataoContas();
   }
@@ -115,7 +126,7 @@ class _PrestacaoContasPageState extends State<PrestacaoContasPage> {
                           ),
                           Spacer(),
                           GestureDetector(
-                            onTap: () async {
+                            onTap: !hasConnection ? null : () async {
                               if (await confirm(
                               context,
                               title: Text("Atenção"),
@@ -209,6 +220,7 @@ class _PrestacaoContasPageState extends State<PrestacaoContasPage> {
                               child: Icon(
                                 Icons.send,
                                 size: 30.0,
+                                color: !hasConnection ? Colors.black12 : Colors.black,
                               ),
                             ),
                           )

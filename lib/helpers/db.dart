@@ -38,6 +38,26 @@ final String DataFimColumn= "DataFimColumn";
 final String ValorApontadoColumn= "ValorApontadoColumn";
 final String JustificativaColumn= "JustificativaColumn";
 
+//TABELA APONTAMENTO TASK
+final String ApontamentoTaskTable = "ApontamentoTaskTable";
+final String TaskUIDColumn = "TaskUIDColumn";
+final String TaskNameColumn = "TaskNameColumn";
+
+//TABELA APONTAMENTO ASSIGNMENT
+final String ApontamentoAssignmentTable = "ApontamentoAssignmentTable";
+final String AssignmentUIDColumn = "AssignmentUIDColumn";
+final String TrabalhoPrevistoColumn = "TrabalhoPrevistoColumn";
+final String strTrabalhoPrevistoColumn = "strTrabalhoPrevistoColumn";
+final String TimeByDayColumn = "TimeByDayColumn";
+
+//TABELA APONTAMENTO
+final String ApontamentoTable = "ApontamentoTable";
+final String ApontamentoUIDColumn = "ApontamentoUIDColumn";
+final String NewTimeByDayColumn = "NewTimeByDayColumn";
+final String HorasApontadasColumn = "HorasApontadasColumn";
+final String HorasRestantesColumn = "HorasRestantesColumn";
+final String ObservacoesColumn = "ObservacoesColumn";
+
 class HelperDB {
   static final HelperDB _instance = HelperDB.internal();
 
@@ -79,6 +99,18 @@ class HelperDB {
 
       await db.execute(
           "CREATE TABLE $AdiantamentoTable($AdiantamentoUIDColumn TEXT, $ProjectUIDColumn TEXT, $NomeProjetoColumn TEXT, $AdiantamentoCodigoColumn TEXT, $DataInicioColumn TEXT, $DataFimColumn TEXT, $ValorApontadoColumn TEXT, $JustificativaColumn TEXT, $UsuarioUIDColumn TEXT)"
+      );
+
+      await db.execute(
+          "CREATE TABLE $ApontamentoTaskTable($TaskUIDColumn TEXT, $ProjectUIDColumn TEXT, $TaskNameColumn TEXT)"
+      );
+
+      await db.execute(
+          "CREATE TABLE $ApontamentoAssignmentTable($AssignmentUIDColumn TEXT, $TaskUIDColumn TEXT, $TrabalhoPrevistoColumn TEXT, $strTrabalhoPrevistoColumn TEXT, $TimeByDayColumn TEXT)"
+      );
+
+      await db.execute(
+          "CREATE TABLE $ApontamentoTable($ApontamentoUIDColumn TEXT, $ProjectUIDColumn TEXT, $NomeProjetoColumn TEXT, $TaskUIDColumn TEXT, $TaskNameColumn TEXT, $AssignmentUIDColumn TEXT, $ResourceUIDColumn TEXT,  $TimeByDayColumn TEXT, $NewTimeByDayColumn TEXT, $HorasApontadasColumn TEXT, $HorasRestantesColumn TEXT, $ObservacoesColumn TEXT)"
       );
 
     });
@@ -280,6 +312,127 @@ class HelperDB {
     Database mvappDB = await db;
     return await mvappDB.delete(AdiantamentoTable, where: "$AdiantamentoUIDColumn = ?", whereArgs: [AdiantamentoUID]);
   }
+
+  //APONTAMENTO
+  Future<ApontamentoTask> saveApontamentoTask(ApontamentoTask apontamentoTask) async {
+    Database mvappDB = await db;
+    await mvappDB.insert(ApontamentoTaskTable, apontamentoTask.toMap());
+    return apontamentoTask;
+  }
+
+  Future<ApontamentoAssignment> saveApontamentoAssignment(ApontamentoAssignment apontamentoAssignment) async {
+    Database mvappDB = await db;
+    await mvappDB.insert(ApontamentoAssignmentTable, apontamentoAssignment.toMap());
+    return apontamentoAssignment;
+  }
+
+  Future<List<ApontamentoTask>> getAllApontamentoTask() async {
+    Database mvappDB = await db;
+    List<Map> maps = await mvappDB.query(ApontamentoTaskTable,
+        columns: [TaskUIDColumn, ProjectUIDColumn, TaskNameColumn]);
+
+    List<ApontamentoTask> apontamentos_task = [];
+
+    if (maps.length > 0){
+      for (Map map in maps){
+        ApontamentoTask apontamentoTask = ApontamentoTask.fromMap(map);
+        apontamentoTask.Assignments = await getApontamentoAssignmentsByTaskUID(apontamentoTask.TaskUID);
+        apontamentos_task.add(apontamentoTask);
+      }
+    }
+
+    return apontamentos_task;
+  }
+
+  Future<List<ApontamentoAssignment>> getApontamentoAssignmentsByTaskUID(String TaskUID) async {
+    Database mvappDB = await db;
+    List<Map> maps = await mvappDB.query(ApontamentoAssignmentTable,
+      columns: [AssignmentUIDColumn, TaskUIDColumn, TrabalhoPrevistoColumn, strTrabalhoPrevistoColumn, TimeByDayColumn],
+      where: "$TaskUIDColumn = ?",
+      whereArgs: [TaskUID]);
+
+    List<ApontamentoAssignment> apontamentos_assignments = [];
+
+    if (maps.length > 0){
+      for (Map map in maps){
+        apontamentos_assignments.add(ApontamentoAssignment.fromMap(map));
+      }
+    }
+
+    return apontamentos_assignments;
+  }
+
+  Future<Apontamento> saveApontamento(Apontamento apontamento) async {
+    Database mvappDB = await db;
+    await mvappDB.insert(ApontamentoTable, apontamento.toMap());
+    return apontamento;
+  }
+
+  Future<int> updateApontamento(Apontamento apontamento) async {
+    Database mvappDB = await db;
+    return await mvappDB.update(ApontamentoTable,
+        apontamento.toMap(),
+        where: "$ApontamentoUIDColumn = ?",
+        whereArgs: [apontamento.ApontamentoUID]);
+  }
+
+  Future<List<Apontamento>> getAllApontamentos() async {
+    Database mvappDB = await db;
+    List<Map> maps = await mvappDB.query(ApontamentoTable,
+        columns: [ApontamentoUIDColumn, ProjectUIDColumn, NomeProjetoColumn, TaskUIDColumn, TaskNameColumn, AssignmentUIDColumn, ResourceUIDColumn,  TimeByDayColumn, NewTimeByDayColumn, HorasApontadasColumn, HorasRestantesColumn, ObservacoesColumn]
+    );
+
+    List<Apontamento> apontamentos = [];
+
+    if (maps.length > 0){
+      for (Map map in maps){
+        apontamentos.add(Apontamento.fromMap(map));
+      }
+    }
+
+    return apontamentos;
+  }
+
+  Future<List<Apontamento>> getApontamentosByProjectUID(String ProjectUID) async {
+    Database mvappDB = await db;
+    List<Map> maps = await mvappDB.query(
+      ApontamentoTable,
+      columns: [ApontamentoUIDColumn, ProjectUIDColumn, NomeProjetoColumn, TaskUIDColumn, TaskNameColumn, AssignmentUIDColumn, ResourceUIDColumn,  TimeByDayColumn, NewTimeByDayColumn, HorasApontadasColumn, HorasRestantesColumn, ObservacoesColumn],
+      where: "$ProjectUIDColumn = ?",
+      whereArgs: [ProjectUID]
+    );
+
+    List<Apontamento> apontamentos = [];
+
+    if (maps.length > 0){
+      for (Map map in maps){
+        apontamentos.add(Apontamento.fromMap(map));
+      }
+    }
+
+    return apontamentos;
+  }
+
+  Future<int> deleteApontamentoByUID(String ApontamentoUID) async {
+    Database mvappDB = await db;
+    return await mvappDB.delete(ApontamentoTable, where: "$ApontamentoUIDColumn = ?", whereArgs: [ApontamentoUID]);
+  }
+
+  Future<int> deleteApontamentos() async {
+    Database mvappDB = await db;
+    return await mvappDB.delete(ApontamentoTable);
+  }
+
+  Future<int> deleteApontamentoTask() async {
+    Database mvappDB = await db;
+    return await mvappDB.delete(ApontamentoTaskTable);
+  }
+
+  Future<int> deleteApontamentoAssignment() async {
+    Database mvappDB = await db;
+    return await mvappDB.delete(ApontamentoAssignmentTable);
+  }
+
 }
 
 class Usuario {
@@ -509,3 +662,125 @@ class Adiantamento {
     };
   }
 }
+
+class ApontamentoTask {
+  String ProjectUID;
+  String TaskUID;
+  String TaskName;
+  List<ApontamentoAssignment> Assignments;
+
+  ApontamentoTask();
+
+  ApontamentoTask.fromMap(Map map){
+    TaskUID = map[TaskUIDColumn];
+    ProjectUID = map[ProjectUIDColumn];
+    TaskName = map[TaskNameColumn];
+  }
+
+  Map toMap() {
+    Map<String, dynamic> map = {
+      TaskUIDColumn: TaskUID,
+      ProjectUIDColumn: ProjectUID,
+      TaskNameColumn: TaskName
+    };
+    return map;
+  }
+}
+
+class ApontamentoAssignment {
+  String AssignmentUID;
+  String TaskUID;
+  double TrabalhoPrevisto;
+  String strTrabalhoPrevisto;
+  String TimeByDay;
+
+  ApontamentoAssignment();
+
+  ApontamentoAssignment.fromMap(Map map){
+    TaskUID = map[TaskUIDColumn];
+    AssignmentUID = map[AssignmentUIDColumn];
+    TrabalhoPrevisto = map[TrabalhoPrevistoColumn];
+    strTrabalhoPrevisto = map[strTrabalhoPrevistoColumn];
+    TimeByDay = map[TimeByDayColumn];
+  }
+
+  Map toMap() {
+    Map<String, dynamic> map = {
+      TaskUIDColumn: TaskUID,
+      AssignmentUIDColumn: AssignmentUID,
+      TrabalhoPrevistoColumn: TrabalhoPrevisto,
+      strTrabalhoPrevistoColumn: strTrabalhoPrevisto,
+      TimeByDayColumn: TimeByDay
+    };
+    return map;
+  }
+}
+
+class Apontamento {
+  String ApontamentoUID;
+  String ProjectUID;
+  String NomeProjeto;
+  String TaskUID;
+  String TaskName;
+  String AssignmentUID;
+  String ResourceUID;
+  String TimeByDay;
+  String NewTimeByDay;
+  String HorasApontadas;
+  String HorasRestantes;
+  String Observacoes;
+
+  Apontamento();
+
+  Apontamento.fromMap(Map map){
+    ApontamentoUID = map[ApontamentoUIDColumn];
+    ProjectUID = map[ProjectUIDColumn];
+    NomeProjeto = map[NomeProjetoColumn];
+    TaskUID = map[TaskUIDColumn];
+    TaskName = map[TaskNameColumn];
+    AssignmentUID = map[AssignmentUIDColumn];
+    ResourceUID = map[ResourceUIDColumn];
+    TimeByDay = map[TimeByDayColumn];
+    NewTimeByDay = map[NewTimeByDayColumn];
+    HorasApontadas = map[HorasApontadasColumn];
+    HorasRestantes = map[HorasRestantesColumn];
+    Observacoes = map[ObservacoesColumn];
+  }
+
+  Map toMap() {
+    Map<String, dynamic> map = {
+      ApontamentoUIDColumn: ApontamentoUID,
+      ProjectUIDColumn: ProjectUID,
+      NomeProjetoColumn: NomeProjeto,
+      TaskUIDColumn: TaskUID,
+      TaskNameColumn: TaskName,
+      AssignmentUIDColumn: AssignmentUID,
+      ResourceUIDColumn: ResourceUID,
+      TimeByDayColumn: TimeByDay,
+      NewTimeByDayColumn: NewTimeByDay,
+      HorasApontadasColumn: HorasApontadas,
+      HorasRestantesColumn: HorasRestantes,
+      ObservacoesColumn: Observacoes
+    };
+    return map;
+  }
+
+  Map<String, dynamic> toJson() {
+
+    return {
+      'ProjectUID': ProjectUID,
+      'TaskUID': TaskUID,
+      'AssignmentUID': AssignmentUID,
+      'ResourceUID': ResourceUID,
+      'TimeByDay': TimeByDay,
+      'NewTimeByDay': "${NewTimeByDay.split("/")[2]}-${NewTimeByDay.split("/")[1]}-${NewTimeByDay.split("/")[0]}",
+      'HorasApontadas': HorasApontadas,
+      'HorasRestantes': HorasRestantes,
+      'Observacoes': Observacoes
+    };
+  }
+}
+
+
+
+

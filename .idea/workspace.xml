@@ -4,7 +4,28 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="462d9e25-f387-4691-8a09-b33ebd61d60d" name="Default Changelist" comment="" />
+    <list default="true" id="462d9e25-f387-4691-8a09-b33ebd61d60d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/images/MVicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/ApontamentoPage.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/FormApontamento.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/SelecionarAtividade.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/validators/ApontamentoValidator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/helpers/db.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/helpers/db.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/AdiantamentoPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AdiantamentoPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/FormAdiantamento.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormAdiantamento.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/FormPrestacaoContas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormPrestacaoContas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/Home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/Login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/Login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/PrestacaoContasGrupo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasGrupo.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/PrestacaoContasPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/SelecionarProjetoWorkOffline.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/SelecionarProjetoWorkOffline.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/validators/PrestacaoContasValidator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/validators/PrestacaoContasValidator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +36,16 @@
       <list>
         <option value="Dart File" />
       </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\junio\Desktop\MVApp\mv_app\.idea" />
+      </set>
     </option>
   </component>
   <component name="ProjectId" id="1YxTAIlg19pTvcyxnGZzXhPCULb" />
@@ -32,6 +63,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\junio\Desktop\MVApp\mv_app\assets\images" />
       <recent name="C:\Users\junio\Desktop\FlutterProjects\mv_app\assets\images" />
       <recent name="C:\Users\junio\Desktop\FlutterProjects\mv_app\assets" />
     </key>
@@ -54,46 +86,54 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="248" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602462680915" />
-    <state width="599" height="466" key="DebuggerActiveHint" timestamp="1604322252486">
+    <state x="815" y="285" key="AndroidProcessChooserDialog" timestamp="1605753446915">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="599" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604322252486" />
-    <state width="1877" height="255" key="GridCell.Tab.0.bottom" timestamp="1604323071419">
+    <state x="815" y="285" key="AndroidProcessChooserDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753446915" />
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1605661952703">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="255" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604323071419" />
-    <state width="1877" height="255" key="GridCell.Tab.0.center" timestamp="1604323071418">
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605661952703" />
+    <state width="599" height="466" key="DebuggerActiveHint" timestamp="1605743754014">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="255" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604323071418" />
-    <state width="1877" height="255" key="GridCell.Tab.0.left" timestamp="1604323071418">
+    <state width="599" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605743754014" />
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1605753453648">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="255" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604323071418" />
-    <state width="1877" height="255" key="GridCell.Tab.0.right" timestamp="1604323071419">
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753453648" />
+    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1605753453648">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="255" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604323071419" />
+    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753453648" />
+    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1605753453648">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753453648" />
+    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1605753453648">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753453648" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1603654866800">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603654866800" />
-    <state x="100" y="100" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1604320998903">
+    <state x="98" y="218" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1605750819695">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="100" y="100" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604320998903" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1604356468448">
+    <state x="98" y="218" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605750819695" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1605750794586">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604356468448" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605750794586" />
     <state x="656" y="118" width="607" height="804" key="find.popup" timestamp="1603140671213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="118" width="607" height="804" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603140671213" />
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1602555293569">
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1605744083630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602555293569" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605744083630" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1603047089890">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -101,13 +141,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/pages/AdiantamentoPage.dart</url>
-          <line>215</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint suspend="THREAD" type="dart-exception" />
       </default-breakpoints>

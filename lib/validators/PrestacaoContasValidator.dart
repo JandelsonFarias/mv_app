@@ -6,7 +6,7 @@ class PrestacaoContasValidator {
   }
 
   String validateDespesa(String DespesaUID){
-    if(DespesaUID == null || DespesaUID.isEmpty) return "Informe a Despesa";
+    if(DespesaUID == null || DespesaUID.isEmpty) return "Informe a Despesaa";
     return null;
   }
 

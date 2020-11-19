@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mvapp/helpers/db.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:mvapp/pages/AdiantamentoPage.dart';
+import 'ApontamentoPage.dart';
 import 'PrestacaoContasPage.dart';
 import 'Login.dart';
 
@@ -32,9 +33,7 @@ class _HomeState extends State<Home> {
   final tabs = [
     PrestacaoContasPage(),
     AdiantamentoPage(),
-    Center(
-        child: (Text("Apontamentos"))
-    )
+    ApontamentoPage()
   ];
 
   @override
@@ -66,11 +65,17 @@ class _HomeState extends State<Home> {
                       helperDB.deleteDespesas().then((despesadeleted){
                         helperDB.deletePrestacaoContas().then((pcdeleted){
                           helperDB.deleteAdiantamentos().then((addeleted){
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (context) => Login()),
-                                  (Route<dynamic> route) => false,
-                            );
+                            helperDB.deleteApontamentoAssignment().then((assdeleted){
+                              helperDB.deleteApontamentoTask().then((taskdeleted){
+                                helperDB.deleteApontamentos().then((apotdeleted){
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Login()),
+                                        (Route<dynamic> route) => false,
+                                  );
+                                });
+                              });
+                            });
                           });
                         });
                       });

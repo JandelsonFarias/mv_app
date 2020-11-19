@@ -30,6 +30,8 @@ dependencies:
   image_picker: ^0.6.7+12
   uuid: 2.2.2
   intl: ^0.16.1
+  mask_text_input_formatter: ^1.1.0
+  data_connection_checker: ^0.3.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -43,7 +45,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/MV.png"
+  image_path: "assets/images/MVicon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -59,6 +61,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/MV.png
+    - assets/images/MVicon.png
     - assets/images/image.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

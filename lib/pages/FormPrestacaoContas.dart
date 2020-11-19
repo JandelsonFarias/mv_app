@@ -53,7 +53,7 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
       SelectedDate = new DateTime(int.parse(widget.prestacaoContas.Data.split("/")[2]), int.parse(widget.prestacaoContas.Data.split("/")[1]), int.parse(widget.prestacaoContas.Data.split("/")[0]));
 
     if (widget.prestacaoContas.Valor != null)
-      ValorController.value = TextEditingValue(text: (widget.prestacaoContas.Valor.toString().length <= 4 ? "${widget.prestacaoContas.Valor.toString()}0" : widget.prestacaoContas.Valor.toString()));
+      ValorController.updateValue(widget.prestacaoContas.Valor);
 
     if (widget.prestacaoContas.Descricao != null)
       DescricaoController.text = widget.prestacaoContas.Descricao;
@@ -172,8 +172,11 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
       setState(() {
         dowpDownMenuItems_despesa = _builddowpDownMenuItemsDespesa();
 
-        if (widget.prestacaoContas.DespesaUID != null) {
-          DespesaSelecionada = Despesas.firstWhere((x) => x.DespesaUID == widget.prestacaoContas.DespesaUID);
+        if (widget.prestacaoContas.DespesaUID != null){
+          Despesa d = Despesas.firstWhere((x) => x.DespesaUID == widget.prestacaoContas.DespesaUID, orElse: () => null);
+
+          if (d == null)
+            widget.prestacaoContas.DespesaUID = null;
         }
       });
     }
@@ -263,18 +266,19 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
                 child: Text("Despesa"),
               ),
               DropdownButtonFormField<String>(
-                value: DespesaSelecionada.DespesaUID ?? (widget.prestacaoContas.DespesaUID != null ? "a" : null),
+                value: widget.prestacaoContas.DespesaUID,
                 icon: Icon(Icons.keyboard_arrow_down),
                 isExpanded: true,
                 iconSize: 24.0,
                 elevation: 16,
                 onChanged: (despesa){
                   setState(() {
-                    DespesaSelecionada = Despesas.firstWhere((x) => x.DespesaUID == despesa, orElse: () => Despesa());
+                    Despesa d = Despesas.firstWhere((x) => x.DespesaUID == despesa, orElse: () => Despesa());
+                    widget.prestacaoContas.DespesaUID = d.DespesaUID;
                   });
                 },
                 items: dowpDownMenuItems_despesa,
-                validator: validateDespesa,
+                validator: validateDespesa
               ),
               SizedBox(height: 20.0),
               Container(
@@ -437,8 +441,8 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
           if(_formKey.currentState.validate() && SelectedDate != null && widget.prestacaoContas.AttachmentPath != null){
             widget.prestacaoContas.ProjectUID = ProjetoSelecionado.ProjectUID;
             widget.prestacaoContas.NomeProjeto = ProjetoSelecionado.NomeProjeto;
-            widget.prestacaoContas.DespesaUID = DespesaSelecionada.DespesaUID;
-            widget.prestacaoContas.NomeDespesa = DespesaSelecionada.NomeDespesa;
+            Despesa d = Despesas.firstWhere((x) => x.DespesaUID == widget.prestacaoContas.DespesaUID);
+            widget.prestacaoContas.NomeDespesa = d.NomeDespesa;
             widget.prestacaoContas.Data = "${SelectedDate.day}/${SelectedDate.month}/${SelectedDate.year}";
             widget.prestacaoContas.Valor = ValorController.numberValue;
             widget.prestacaoContas.Descricao = DescricaoController.text;

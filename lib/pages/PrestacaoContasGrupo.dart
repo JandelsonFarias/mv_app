@@ -9,6 +9,7 @@ import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:mvapp/helpers/constants.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 
 class PrestacaoContasGrupo extends StatefulWidget {
 
@@ -22,11 +23,13 @@ class PrestacaoContasGrupo extends StatefulWidget {
 
 class _PrestacaoContasGrupoState extends State<PrestacaoContasGrupo> {
 
+  bool hasConnection = false;
+
   Usuario usuarioLogado = Usuario();
 
   ProgressDialog loading;
 
-  var currency = new NumberFormat.currency(locale: "pt_BR", symbol: "RS");
+  var currency = new NumberFormat.currency(locale: "pt_BR", symbol: "R\$");
 
   HelperDB helperDB = HelperDB();
 
@@ -49,9 +52,17 @@ class _PrestacaoContasGrupoState extends State<PrestacaoContasGrupo> {
     });
   }
 
+  void verifyConnection() async {
+    bool con = await DataConnectionChecker().hasConnection;
+    setState(()  {
+      hasConnection = con;
+    });
+  }
+
   @override
   void initState(){
     super.initState();
+    verifyConnection();
     loadPrescataoContas();
     loadUsuarioLogado();
   }
@@ -81,7 +92,6 @@ class _PrestacaoContasGrupoState extends State<PrestacaoContasGrupo> {
               color: Colors.white,
             ),
             onPressed: () async {
-
               if (await confirm(
                   context,
                   title: Text("Atenção"),
@@ -99,9 +109,9 @@ class _PrestacaoContasGrupoState extends State<PrestacaoContasGrupo> {
           IconButton(
             icon: Icon(
               Icons.send,
-              color: Colors.white,
+              color: !hasConnection ? Colors.black12 : Colors.white,
             ),
-            onPressed: () async {
+            onPressed: !hasConnection ? null : () async {
               if (await confirm(
                   context,
                   title: Text("Atenção"),

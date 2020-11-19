@@ -40,21 +40,39 @@ class _LoginState extends State<Login> {
     super.initState();
     helperDB.getUsuarioLogado().then((usuarioLogado){
       if (usuarioLogado == null){
-        setState(() {
-          verificandoUsuarioLogado = false;
-        });
+        Future.delayed(
+          new Duration(seconds: 2), () => {
+            setState(() {
+            verificandoUsuarioLogado = false;
+            })
+          }
+        );
+      }
+      else if (usuarioLogado.WorkOffline == "0") {
+        Future.delayed(
+          new Duration(seconds: 2), () => {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => Home()),
+                  (Route<dynamic> route) => false,
+            )
+          }
+        );
       }
       else {
-        Future.delayed(
-            new Duration(seconds: 2),
-                () => {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => Home()),
-                    (Route<dynamic> route) => false,
-              )
-            }
-        );
+        helperDB.getProjetoSelecionado().then((projetoSelecionado){
+          if (projetoSelecionado == null){
+            helperDB.deleteUsuarioLogado().then((deleted){
+              Future.delayed(
+                new Duration(seconds: 2), () => {
+                  setState(() {
+                    verificandoUsuarioLogado = false;
+                  })
+                }
+              );
+            });
+          }
+        });
       }
     });
   }
