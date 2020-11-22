@@ -766,7 +766,6 @@ class Apontamento {
   }
 
   Map<String, dynamic> toJson() {
-
     return {
       'ProjectUID': ProjectUID,
       'TaskUID': TaskUID,
@@ -777,6 +776,22 @@ class Apontamento {
       'HorasApontadas': HorasApontadas,
       'HorasRestantes': HorasRestantes,
       'Observacoes': Observacoes
+    };
+  }
+}
+
+class PrestacaoContasAprovacaoPOST {
+  String PrestacaoConta_GrupoUID;
+  String StatusAprovacao;
+  String JustificativaAprovacao;
+  List<String> PrestacaoContasUIDs;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'PrestacaoConta_GrupoUID': PrestacaoConta_GrupoUID,
+      'StatusAprovacao': StatusAprovacao,
+      'JustificativaAprovacao': JustificativaAprovacao,
+      'PrestacaoContasUIDs' : PrestacaoContasUIDs
     };
   }
 }

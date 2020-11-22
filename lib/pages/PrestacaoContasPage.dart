@@ -104,6 +104,7 @@ class _PrestacaoContasPageState extends State<PrestacaoContasPage> {
               ),
               SizedBox(height: 10.0),
               ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index){
                   return GestureDetector(
                     child: Card(

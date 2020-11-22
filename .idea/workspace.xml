@@ -5,25 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="462d9e25-f387-4691-8a09-b33ebd61d60d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/images/MVicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/ApontamentoPage.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/FormApontamento.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/SelecionarAtividade.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/validators/ApontamentoValidator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasAprovacao.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasAprovar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasTabs.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/helpers/db.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/helpers/db.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/AdiantamentoPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/AdiantamentoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/FormAdiantamento.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormAdiantamento.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/FormPrestacaoContas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormPrestacaoContas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/Home.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/Login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/Login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/PrestacaoContasGrupo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasGrupo.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/PrestacaoContasPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/SelecionarProjetoWorkOffline.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/SelecionarProjetoWorkOffline.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/validators/PrestacaoContasValidator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/validators/PrestacaoContasValidator.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,46 +80,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="248" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602462680915" />
-    <state x="815" y="285" key="AndroidProcessChooserDialog" timestamp="1605753446915">
+    <state x="815" y="285" key="AndroidProcessChooserDialog" timestamp="1606050811729">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="815" y="285" key="AndroidProcessChooserDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753446915" />
-    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1605661952703">
+    <state x="815" y="285" key="AndroidProcessChooserDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606050811729" />
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1606072524609">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605661952703" />
-    <state width="599" height="466" key="DebuggerActiveHint" timestamp="1605743754014">
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606072524609" />
+    <state width="599" height="466" key="DebuggerActiveHint" timestamp="1606054586113">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="599" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605743754014" />
-    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1605753453648">
+    <state width="599" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606054586113" />
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1606082104938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753453648" />
-    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1605753453648">
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606082104938" />
+    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1606082104938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753453648" />
-    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1605753453648">
+    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606082104938" />
+    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1606082104938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753453648" />
-    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1605753453648">
+    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606082104938" />
+    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1606082104938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605753453648" />
+    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606082104938" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1603654866800">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603654866800" />
-    <state x="98" y="218" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1605750819695">
+    <state x="98" y="218" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1606070926513">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="98" y="218" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605750819695" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1605750794586">
+    <state x="98" y="218" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606070926513" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1606069258943">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605750794586" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606069258943" />
     <state x="656" y="118" width="607" height="804" key="find.popup" timestamp="1603140671213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

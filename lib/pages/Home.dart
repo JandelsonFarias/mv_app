@@ -4,8 +4,8 @@ import 'package:mvapp/helpers/db.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:mvapp/pages/AdiantamentoPage.dart';
 import 'ApontamentoPage.dart';
-import 'PrestacaoContasPage.dart';
 import 'Login.dart';
+import 'PrestacaoContasTabs.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
   int _currentTab = 0;
 
   final tabs = [
-    PrestacaoContasPage(),
+    PrestacaoContasTabs(),
     AdiantamentoPage(),
     ApontamentoPage()
   ];
