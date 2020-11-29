@@ -796,6 +796,20 @@ class PrestacaoContasAprovacaoPOST {
   }
 }
 
+class AdiantamentoAprovacaoPOST {
+  String AdiantamentoUID;
+  String StatusAprovacao;
+  String Justificativa;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'AdiantamentoUID': AdiantamentoUID,
+      'StatusAprovacao': StatusAprovacao,
+      'Justificativa': Justificativa,
+    };
+  }
+}
+
 
 
 
