@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="462d9e25-f387-4691-8a09-b33ebd61d60d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/ApontamentoAprovacao.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/ApontamentoAprovar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/ApontamentoTabs.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/helpers/db.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/helpers/db.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/Home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/PrestacaoContasAprovar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasAprovar.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,34 +86,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="599" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606054586113" />
-    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1606917333161">
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1607259303022">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606917333161" />
-    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1606917333161">
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607259303022" />
+    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1607259303022">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606917333161" />
-    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1606917333161">
+    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607259303022" />
+    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1607259303021">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606917333161" />
-    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1606917333161">
+    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607259303021" />
+    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1607259303022">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606917333161" />
-    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1603654866800">
+    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607259303022" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1607258899201">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603654866800" />
-    <state x="98" y="218" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1606917240953">
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607258899201" />
+    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607255061240">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="98" y="218" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606917240953" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1606917182255">
+    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607255061240" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1607253407297">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606917182255" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607253407297" />
     <state x="656" y="118" width="607" height="804" key="find.popup" timestamp="1603140671213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

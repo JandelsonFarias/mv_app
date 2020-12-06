@@ -50,7 +50,7 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
         else {
           AlertDialog alert = AlertDialog(
             title: Text("Atenção"),
-            content: Text("Uma ou mais PCs foram já aprovadas ou reprovadas anteriormente, portanto não sofreram alterações."),
+            content: Text("Uma ou mais PCs já foram aprovadas ou reprovadas anteriormente, portanto não tiveram alterações."),
             actions: [
               FlatButton(
                 child: Text("OK"),

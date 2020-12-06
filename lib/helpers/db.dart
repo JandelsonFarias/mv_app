@@ -810,6 +810,49 @@ class AdiantamentoAprovacaoPOST {
   }
 }
 
+class ApontamentoAprovacaoPOST {
+  String TaskUID;
+  String ProjectUID;
+  String ProjectName;
+  String TaskName;
+  List<ApontamentoAssignmentAprovacaoPOST> Assignments;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'TaskUID': TaskUID,
+      'ProjectUID': ProjectUID,
+      'ProjectName': ProjectName,
+      'TaskName': TaskName,
+      'Assignments': Assignments,
+    };
+  }
+}
+
+class ApontamentoAssignmentAprovacaoPOST {
+  String AssignmentUID;
+  String TimeByDay;
+  String NewTimeByDay;
+  String StatusAprovacao;
+  String ObservacoesAprovacao;
+  String ResourceUID;
+  String ResourceName;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'AssignmentUID': AssignmentUID,
+      'TimeByDay': TimeByDay,
+      'NewTimeByDay': NewTimeByDay,
+      'StatusAprovacao': StatusAprovacao,
+      'ObservacoesAprovacao': ObservacoesAprovacao,
+      'ResourceUID': ResourceUID,
+      'ResourceName': ResourceName,
+    };
+  }
+}
+
+
+
+
 
 
 

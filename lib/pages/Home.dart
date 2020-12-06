@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mvapp/helpers/db.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'AdiantamentoTabs.dart';
-import 'ApontamentoPage.dart';
+import 'ApontamentoTabs.dart';
 import 'Login.dart';
 import 'PrestacaoContasTabs.dart';
 
@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
   final tabs = [
     PrestacaoContasTabs(),
     AdiantamentoTabs(),
-    ApontamentoPage()
+    ApontamentoTabs()
   ];
 
   @override
