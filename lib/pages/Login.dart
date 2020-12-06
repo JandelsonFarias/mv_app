@@ -174,30 +174,39 @@ class _LoginState extends State<Login> {
     _efetuarLogin(usuarioController.text, senhaController.text).then((map) async {
       if (map != null){
 
-        Usuario usuario = Usuario();
-        usuario.UsuarioUID = map["UsuarioUID"];
-        usuario.ResourceUID = map["ResourceUID"];
-        usuario.Nome = map["Nome"];
-        usuario.WorkOffline = workOffline ? "1" : "0";
+        if (map["UsuarioUID"] != null){
+          Usuario usuario = Usuario();
+          usuario.UsuarioUID = map["UsuarioUID"];
+          usuario.ResourceUID = map["ResourceUID"];
+          usuario.Nome = map["Nome"];
+          usuario.WorkOffline = workOffline ? "1" : "0";
 
-        helperDB.saveUsuario(usuario).then((usuario){
+          helperDB.saveUsuario(usuario).then((usuario){
 
-          if (workOffline)
-          {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => SelecionarProjetoWorkOffline()),
-                  (Route<dynamic> route) => false,
-            );
-          }
-          else {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
-                  (Route<dynamic> route) => false,
-            );
-          }
-        });
+            if (workOffline)
+            {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => SelecionarProjetoWorkOffline()),
+                    (Route<dynamic> route) => false,
+              );
+            }
+            else {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Home()),
+                    (Route<dynamic> route) => false,
+              );
+            }
+          });
+        }
+        else {
+          await loading.hide().then((e){
+            var a = map["Erro"];
+
+            Alert(message: map["Erro"]).show();
+          });
+        }
       }
       else {
         await loading.hide().then((e){
@@ -248,15 +257,22 @@ class _LoginState extends State<Login> {
   Future<Map> _efetuarLogin(usuario, senha) async {
     try {
       http.Response response;
-      response = await http.get(baseApiURL + "Usuario/EfetuarLogin/?Login=$usuario&Senha=$senha");
+      response = await http.get(baseApiURL + "Usuarios/EfetuarLogin/?Login=$usuario&Senha=$senha");
 
       if (response.statusCode == 200)
         return json.decode(response.body);
-      else
+      else if (response.statusCode == 401)
         return null;
+      else {
+        Map map = Map();
+        map["Erro"] = "Ocorreu um erro inesperado.";
+        return map;
+      }
     }
     catch (ex) {
-      return null;
+      Map map = Map();
+      map["Erro"] = ex.errMsg();
+      return map;
     }
   }
 
