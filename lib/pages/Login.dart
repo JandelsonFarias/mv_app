@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -257,7 +259,7 @@ class _LoginState extends State<Login> {
   Future<Map> _efetuarLogin(usuario, senha) async {
     try {
       http.Response response;
-      response = await http.get(baseApiURL + "Usuarios/EfetuarLogin/?Login=$usuario&Senha=$senha");
+      response = await http.get(baseApiURL + "Usuario/EfetuarLogin/?Login=$usuario&Senha=$senha");
 
       if (response.statusCode == 200)
         return json.decode(response.body);
@@ -271,7 +273,8 @@ class _LoginState extends State<Login> {
     }
     catch (ex) {
       Map map = Map();
-      map["Erro"] = ex.errMsg();
+      map["Erro"] = "Ocorreu um erro inesperado.";
+      print(ex);
       return map;
     }
   }

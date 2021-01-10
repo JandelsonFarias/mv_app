@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-final baseApiURL = "http://webservice.sgpplus.com/MV/AppWebApi/api/";
+//final baseApiURL = "http://webservice.sgpplus.com/MV/AppWebApi/api/";
+final baseApiURL = "https://mv-seguro.simplifiquegp.com.br/AppWebAPI/api/";
 
 final kHintTextStyle = TextStyle(
   color: Colors.black54,
