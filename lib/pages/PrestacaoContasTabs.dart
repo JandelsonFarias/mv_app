@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvapp/pages/PrestacaoContasAcompanhamento.dart';
 import 'package:tabbar/tabbar.dart';
 import 'PrestacaoContasAprovacao.dart';
 import 'PrestacaoContasPage.dart';
@@ -25,7 +26,8 @@ class _PrestacaoContasTabsState extends State<PrestacaoContasTabs> {
             controller: controller,
             tabs: [
               Tab(text: "Cadastro"),
-              Tab(text: "Aprovação")
+              Tab(text: "Aprovação"),
+              Tab(text: "Acompanhamento")
             ],
           ),
         ),
@@ -34,7 +36,8 @@ class _PrestacaoContasTabsState extends State<PrestacaoContasTabs> {
         controller: controller,
         children: <Widget>[
           PrestacaoContasPage(),
-          PrestacaoContasAprovacao()
+          PrestacaoContasAprovacao(),
+          PrestacaoContasAcompanhamento()
         ],
       ),
     );

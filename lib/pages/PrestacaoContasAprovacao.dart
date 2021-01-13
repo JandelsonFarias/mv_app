@@ -39,9 +39,11 @@ class _PrestacaoContasAprovacaoState extends State<PrestacaoContasAprovacao> {
 
   loadPrestacaoContas() async {
 
-    setState(() {
-      carregando = true;
-    });
+    if (this.mounted){
+      setState(() {
+        carregando = true;
+      });
+    }
 
     http.Response response;
 
@@ -56,13 +58,20 @@ class _PrestacaoContasAprovacaoState extends State<PrestacaoContasAprovacao> {
         temp.add(map);
       }
 
-      setState(() {
-        prestacaoContas = temp;
-        carregando = false;
-      });
+      if (this.mounted){
+        setState(() {
+          prestacaoContas = temp;
+          carregando = false;
+        });
+      }
     }
-    else
-      carregando = false;
+    else{
+      if (this.mounted){
+        setState(() {
+          carregando = false;
+        });
+      }
+    }
   }
 
   Widget _buildContainerNoData(){

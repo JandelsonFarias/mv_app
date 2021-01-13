@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="462d9e25-f387-4691-8a09-b33ebd61d60d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/pages/ApontamentoAcompanhamento.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasAcompanhamento.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasAcompanhamentoDetalhes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/helpers/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/helpers/constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/Login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/Login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/ApontamentoAprovacao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/ApontamentoAprovacao.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/ApontamentoTabs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/ApontamentoTabs.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/PrestacaoContasAprovacao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasAprovacao.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/PrestacaoContasTabs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasTabs.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,61 +75,65 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="248" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602462680915" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1610326935223">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610326935223" />
     <state x="815" y="285" key="AndroidProcessChooserDialog" timestamp="1606050811729">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="815" y="285" key="AndroidProcessChooserDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606050811729" />
-    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1606072524609">
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1610499279391">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606072524609" />
-    <state width="599" height="466" key="DebuggerActiveHint" timestamp="1607291600686">
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610499279391" />
+    <state width="599" height="466" key="DebuggerActiveHint" timestamp="1610500161401">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="599" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607291600686" />
+    <state width="599" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610500161401" />
     <state width="599" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607290024464" />
-    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1610306418027">
+    <state width="1877" height="267" key="GridCell.Tab.0.bottom" timestamp="1610500402367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610306418027" />
+    <state width="1877" height="267" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610500402367" />
     <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607290220807" />
-    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1610306418027">
+    <state width="1877" height="267" key="GridCell.Tab.0.center" timestamp="1610500402367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610306418027" />
+    <state width="1877" height="267" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610500402367" />
     <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607290220807" />
-    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1610306418027">
+    <state width="1877" height="267" key="GridCell.Tab.0.left" timestamp="1610500402367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610306418027" />
+    <state width="1877" height="267" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610500402367" />
     <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607290220807" />
-    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1610306418027">
+    <state width="1877" height="267" key="GridCell.Tab.0.right" timestamp="1610500402367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610306418027" />
+    <state width="1877" height="267" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610500402367" />
     <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607290220807" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1607291495937">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607291495937" />
-    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1610305865504">
+    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1610497069535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610305865504" />
+    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610497069535" />
     <state x="2040" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607289774804" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1610302322630">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1610496482400">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610302322630" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610496482400" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607285303051" />
     <state x="656" y="118" width="607" height="804" key="find.popup" timestamp="1603140671213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="118" width="607" height="804" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603140671213" />
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1605744083630">
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1610327944008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1605744083630" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610327944008" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1603047089890">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -133,6 +141,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/pages/ApontamentoAcompanhamento.dart</url>
+          <line>152</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint suspend="THREAD" type="dart-exception" />
       </default-breakpoints>

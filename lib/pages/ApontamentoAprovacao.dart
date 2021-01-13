@@ -34,9 +34,11 @@ class _ApontamentoAprovacaoState extends State<ApontamentoAprovacao> {
 
   loadApontamentos() async {
 
-    setState(() {
-      carregando = true;
-    });
+    if (this.mounted){
+      setState(() {
+        carregando = true;
+      });
+    }
 
     http.Response response;
 
@@ -51,10 +53,12 @@ class _ApontamentoAprovacaoState extends State<ApontamentoAprovacao> {
         temp.add(map);
       }
 
-      setState(() {
-        apontamentos = temp;
-        carregando = false;
-      });
+      if (this.mounted){
+        setState(() {
+          apontamentos = temp;
+          carregando = false;
+        });
+      }
     }
     else
       carregando = false;

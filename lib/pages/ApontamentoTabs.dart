@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvapp/pages/ApontamentoAcompanhamento.dart';
 import 'package:tabbar/tabbar.dart';
 
 import 'ApontamentoAprovacao.dart';
@@ -25,7 +26,8 @@ class _ApontamentoTabsState extends State<ApontamentoTabs> {
             controller: controller,
             tabs: [
               Tab(text: "Cadastro"),
-              Tab(text: "Aprovação")
+              Tab(text: "Aprovação"),
+              Tab(text: "Acompanhamento")
             ],
           ),
         ),
@@ -34,7 +36,8 @@ class _ApontamentoTabsState extends State<ApontamentoTabs> {
         controller: controller,
         children: <Widget>[
           ApontamentoPage(),
-          ApontamentoAprovacao()
+          ApontamentoAprovacao(),
+          ApontamentoAcompanhamento()
         ],
       ),
     );
