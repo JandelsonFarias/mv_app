@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:mvapp/helpers/constants.dart';
 import 'package:mvapp/helpers/db.dart';
 import 'package:http/http.dart' as http;
+
+import 'ApontamentoAcompanhamentoDetalhes.dart';
 
 class ApontamentoAcompanhamento extends StatefulWidget {
   @override
@@ -96,11 +99,50 @@ class _ApontamentoAcompanhamentoState extends State<ApontamentoAcompanhamento> {
         padding: EdgeInsets.all(5.0),
         itemCount: apontamentos.length,
         shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index){
 
-          DateTime NewTimeByDay = DateTime.parse(apontamentos[index]["DataInicio"]);
+          DateTime NewTimeByDay = DateTime.parse(apontamentos[index]["NewTimeByDay"]);
 
-          return Container();
+          return GestureDetector(
+            child: Card(
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text("${apontamentos[index]["TaskName"]}",
+                          style: TextStyle(fontSize: 15.0),
+                        ),
+                        SizedBox(height: 5.0),
+                        Text("${NewTimeByDay.day}/${NewTimeByDay.month}/${NewTimeByDay.year} - ${apontamentos[index]["HoraMinuto"]}",
+                          style: TextStyle(fontSize: 14.0),
+                        )
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    child: Icon(
+                      Icons.info_outline,
+                      size: 30.0,
+                      color: apontamentos[index]["StatusAprovacao"] == "Pendente" ? Colors.orange : apontamentos[index]["StatusAprovacao"] == "Aprovado" ? Colors.green : Colors.red,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            onTap: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ApontamentoAcompanhamentoDetalhes(apontamentos[index]))
+              );
+            },
+          );
         }
     );
   }
