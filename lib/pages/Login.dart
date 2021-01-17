@@ -172,8 +172,14 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> _btnEntrarClick() async {
+
+    print("antes da API");
+
     await loading.show();
     _efetuarLogin(usuarioController.text, senhaController.text).then((map) async {
+
+      print("depois da API");
+
       if (map != null){
 
         if (map["UsuarioUID"] != null){

@@ -93,17 +93,17 @@ class _HomeState extends State<Home> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.credit_card),
-            title: Text("Prest. Contas"),
+            label: "Prest. Contas",
             backgroundColor: Color.fromRGBO(36, 177, 139, 1)
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attach_money),
-            title: Text("Adiantamento"),
+            label: "Adiantamento",
             backgroundColor: Color.fromRGBO(36, 177, 139, 1)
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
-            title: Text("Apontamentos"),
+            label: "Apontamentos",
             backgroundColor: Color.fromRGBO(36, 177, 139, 1)
           )
         ],
