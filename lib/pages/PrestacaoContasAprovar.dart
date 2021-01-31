@@ -187,29 +187,69 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
           DateTime data = DateTime.parse(widget.prestacaoContas["_PrestacaoContas"][index]["Data"]);
 
           return Card(
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
                       Container(
+                        width: 250.0,
                         child: Text("${widget.prestacaoContas["_PrestacaoContas"][index]["NomeDespesa"]}",
-                          style: TextStyle(fontSize: 15.0),
-                        ),
-                        alignment: Alignment.centerLeft,
-                        width: 200.0,
+                          style: TextStyle(fontSize: 15.0)
+                        )
                       ),
-                      SizedBox(height: 10.0),
+                      Spacer(),
+                      Container(
+                          padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
+                          child: GestureDetector(
+                            child: Icon(Icons.mode_comment_outlined),
+                            onTap: () {
+                              AlertDialog alert = AlertDialog(
+                                title: Text("Descrição"),
+                                content: SingleChildScrollView(
+                                  child: Text(widget.prestacaoContas["_PrestacaoContas"][index]["Descricao"]),
+                                ),
+                                actions: [
+                                  FlatButton(
+                                    child: Text("OK"),
+                                    onPressed: () {
+                                      Navigator.of(context, rootNavigator: true).pop('dialog');
+                                    },
+                                  )
+                                ],
+                              );
+
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return alert;
+                                },
+                              );
+                            },
+                          )
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 10.0),
+                  Row(
+                    children: [
                       Text("${data.day}/${data.month}/${data.year}",
                         style: TextStyle(fontSize: 15.0),
-                      ),
-                      SizedBox(height: 10.0),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 10.0),
+                  Row(
+                    children: [
                       Text(currency.format(widget.prestacaoContas["_PrestacaoContas"][index]["Valor"]),
                         style: TextStyle(fontSize: 14.0),
-                      ),
-                      SizedBox(height: 10.0),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 10.0),
+                  Row(
+                    children: [
                       InkWell(
                         child: Text(
                           "Anexo",
@@ -231,11 +271,10 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                       )
                     ],
                   ),
-                ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-                  child: Column(
+                  SizedBox(height: 10.0),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       RaisedButton(
                         child: Row(
@@ -265,6 +304,7 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                           }
                         },
                       ),
+                      SizedBox(width: 20.0),
                       RaisedButton(
                         child: Row(
                           children: [
@@ -290,10 +330,10 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                         },
                       )
                     ],
-                  ),
-                )
-              ],
-            ),
+                  )
+                ],
+              ),
+            )
           );
         }
     );
@@ -328,6 +368,17 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold
                 )
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Container(
+              padding: EdgeInsets.only(top: 10.0),
+              alignment: Alignment.center,
+              child: Text(
+                  "${widget.prestacaoContas["NomeUsuario"]}",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold
+                  )
               ),
             ),
             SizedBox(height: 10.0),

@@ -96,33 +96,43 @@ class _PrestacaoContasAprovacaoState extends State<PrestacaoContasAprovacao> {
       itemBuilder: (context, index){
         return GestureDetector(
           child: Card(
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("PC - ${prestacaoContas[index]["GrupoCodigo"]}",
-                        style: TextStyle(fontSize: 15.0),
-                      ),
-                      SizedBox(height: 5.0),
-                      Text(currency.format(prestacaoContas[index]["Valor"]),
-                        style: TextStyle(fontSize: 14.0),
-                      )
-                    ],
+            child: Container(
+              padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text("PC - ${prestacaoContas[index]["GrupoCodigo"]}",
+                          style: TextStyle(fontSize: 15.0),
+                        ),
+                        SizedBox(height: 5.0),
+                        Container(
+                          width: 250.0,
+                          child: Text("${prestacaoContas[index]["NomeUsuario"]}",
+                            style: TextStyle(fontSize: 15.0),
+                          ),
+                        ),
+                        SizedBox(height: 5.0),
+                        Text(currency.format(prestacaoContas[index]["Valor"]),
+                          style: TextStyle(fontSize: 14.0),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Spacer(),
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 30.0,
-                  ),
-                )
-              ],
+                  Spacer(),
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 30.0,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           onTap: (){

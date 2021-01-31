@@ -49,37 +49,23 @@ class _HomeState extends State<Home> {
           actions: <Widget>[
             IconButton(
               icon: Icon(
-                Icons.reply,
+                Icons.logout,
                 color: Colors.white,
               ),
               onPressed: () async {
                 if (await confirm(
-                  context,
-                  title: Text("Sair"),
-                  content: Text("Tem certeza que sair? Todas as informações não enviadas serão perdidas."),
-                  textOK: Text("Sim"),
-                  textCancel: Text("Não")
-                  )) {
-                  helperDB.deleteUsuarioLogado().then((deleted){
-                    helperDB.deleteProjetoSelecionado().then((projetodeleted){
-                      helperDB.deleteDespesas().then((despesadeleted){
-                        helperDB.deletePrestacaoContas().then((pcdeleted){
-                          helperDB.deleteAdiantamentos().then((addeleted){
-                            helperDB.deleteApontamentoAssignment().then((assdeleted){
-                              helperDB.deleteApontamentoTask().then((taskdeleted){
-                                helperDB.deleteApontamentos().then((apotdeleted){
-                                  Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => Login()),
-                                        (Route<dynamic> route) => false,
-                                  );
-                                });
-                              });
-                            });
-                          });
-                        });
-                      });
-                    });
+                    context,
+                    title: Text("Sair"),
+                    content: Text("Tem certeza que sair? Todas as informações não enviadas serão perdidas."),
+                    textOK: Text("Sim"),
+                    textCancel: Text("Não")
+                )) {
+                  helperDB.logOut().then((deleted){
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                          (Route<dynamic> route) => false,
+                    );
                   });
                 }
               },

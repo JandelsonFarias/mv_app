@@ -36,10 +36,11 @@ class _AdiantamentoAprovacaoState extends State<AdiantamentoAprovacao> {
   }
 
   loadAdiantamentos() async {
-
-    setState(() {
-      carregando = true;
-    });
+    if (this.mounted){
+      setState(() {
+        carregando = true;
+      });
+    }
 
     http.Response response;
 
@@ -54,10 +55,12 @@ class _AdiantamentoAprovacaoState extends State<AdiantamentoAprovacao> {
         temp.add(map);
       }
 
-      setState(() {
-        adiantamentos = temp;
-        carregando = false;
-      });
+      if (this.mounted){
+        setState(() {
+          adiantamentos = temp;
+          carregando = false;
+        });
+      }
     }
     else
       carregando = false;
@@ -137,40 +140,75 @@ class _AdiantamentoAprovacaoState extends State<AdiantamentoAprovacao> {
           DateTime DataFim = DateTime.parse(adiantamentos[index]["DataFim"]);
 
           return Card(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 200.0,
-                  padding: EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
                       Text("AD - ${adiantamentos[index]["Codigo"]}",
                         style: TextStyle(fontSize: 15.0),
                       ),
-                      SizedBox(height: 5.0),
+                      Spacer(),
+                      Container(
+                          padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
+                          child: GestureDetector(
+                            child: Icon(Icons.mode_comment_outlined),
+                            onTap: () {
+                              AlertDialog alert = AlertDialog(
+                                title: Text("Justificativa"),
+                                content: SingleChildScrollView(
+                                  child: Text(adiantamentos[index]["Justificativa"]),
+                                ),
+                                actions: [
+                                  FlatButton(
+                                    child: Text("OK"),
+                                    onPressed: () {
+                                      Navigator.of(context, rootNavigator: true).pop('dialog');
+                                    },
+                                  )
+                                ],
+                              );
+
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return alert;
+                                },
+                              );
+                            },
+                          )
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 5.0),
+                  Row(
+                    children: [
                       Text("${adiantamentos[index]["Solicitante"]}",
                         style: TextStyle(fontSize: 15.0),
-                      ),
-                      SizedBox(height: 5.0),
-                      Text("De: ${DataInicio.day}/${DataInicio.month}/${DataInicio.year}",
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 5.0),
+                  Row(
+                    children: [
+                      Text("De: ${DataInicio.day}/${DataInicio.month}/${DataInicio.year} Até: ${DataFim.day}/${DataFim.month}/${DataFim.year}",
                         style: TextStyle(fontSize: 15.0),
-                      ),
-                      SizedBox(height: 5.0),
-                      Text("Até: ${DataFim.day}/${DataFim.month}/${DataFim.year}",
-                        style: TextStyle(fontSize: 15.0),
-                      ),
-                      SizedBox(height: 5.0),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 5.0),
+                  Row(
+                    children: [
                       Text(currency.format(adiantamentos[index]["ValorApontado"]),
                         style: TextStyle(fontSize: 14.0),
                       )
                     ],
                   ),
-                ),
-                Spacer(),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-                  child: Column(
+                  SizedBox(height: 5.0),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       RaisedButton(
                         child: Row(
@@ -196,7 +234,7 @@ class _AdiantamentoAprovacaoState extends State<AdiantamentoAprovacao> {
                           }
                         },
                       ),
-                      SizedBox(height: 10.0),
+                      SizedBox(width: 20.0),
                       RaisedButton(
                         child: Row(
                           children: [
@@ -219,9 +257,9 @@ class _AdiantamentoAprovacaoState extends State<AdiantamentoAprovacao> {
                       )
                     ],
                   )
-                )
-              ],
-            ),
+                ],
+              ),
+            )
           );
         }
     );

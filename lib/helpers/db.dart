@@ -7,6 +7,7 @@ final String UsuarioUIDColumn = "UsuarioUIDColumn";
 final String ResourceUIDColumn = "ResourceUIDColumn";
 final String NomeColumn = "NomeColumn";
 final String WorkOfflineColumn = "WorkOfflineColumn";
+final String IsGerenteColumn = "IsGerenteColumn";
 
 //TABELA PROJETO
 final String ProjetoTable = "ProjetoTable";
@@ -82,7 +83,7 @@ class HelperDB {
 
     return await openDatabase(path, version: 2, onCreate: (Database db, int newerVersion) async {
       await db.execute(
-          "CREATE TABLE $UsuarioTable($UsuarioUIDColumn TEXT, $ResourceUIDColumn TEXT, $NomeColumn TEXT, $WorkOfflineColumn TEXT)"
+          "CREATE TABLE $UsuarioTable($UsuarioUIDColumn TEXT, $ResourceUIDColumn TEXT, $NomeColumn TEXT, $WorkOfflineColumn TEXT, $IsGerenteColumn TEXT)"
       );
 
       await db.execute(
@@ -126,12 +127,29 @@ class HelperDB {
   Future<Usuario> getUsuarioLogado() async {
     Database mvappDB = await db;
     List<Map> maps = await mvappDB.query(UsuarioTable,
-      columns: [UsuarioUIDColumn, ResourceUIDColumn, NomeColumn, WorkOfflineColumn]);
+      columns: [UsuarioUIDColumn, ResourceUIDColumn, NomeColumn, WorkOfflineColumn, IsGerenteColumn]);
     
     if (maps.length > 0)
       return Usuario.fromMap(maps.first);
     else
       return null;
+  }
+
+  Future<int> logOut() async {
+    Database mvappDB = await db;
+
+    int retorno = 0;
+
+    retorno += await mvappDB.delete(UsuarioTable);
+    retorno += await mvappDB.delete(ProjetoTable);
+    retorno += await mvappDB.delete(DespesaTable);
+    retorno += await mvappDB.delete(PrestacaoContasTable);
+    retorno += await mvappDB.delete(AdiantamentoTable);
+    retorno += await mvappDB.delete(ApontamentoTaskTable);
+    retorno += await mvappDB.delete(ApontamentoAssignmentTable);
+    retorno += await mvappDB.delete(ApontamentoTable);
+
+    return retorno;
   }
 
   Future<int> deleteUsuarioLogado() async {
@@ -440,6 +458,7 @@ class Usuario {
   String ResourceUID;
   String Nome;
   String WorkOffline;
+  bool IsGerente;
 
   Usuario();
 
@@ -448,6 +467,7 @@ class Usuario {
     ResourceUID = map[ResourceUIDColumn];
     Nome = map[NomeColumn];
     WorkOffline = map[WorkOfflineColumn];
+    IsGerente = map[IsGerenteColumn] == "1" ? true : false;
   }
 
   Map toMap() {
@@ -455,7 +475,8 @@ class Usuario {
       UsuarioUIDColumn: UsuarioUID,
       ResourceUIDColumn: ResourceUID,
       NomeColumn: Nome,
-      WorkOfflineColumn: WorkOffline
+      WorkOfflineColumn: WorkOffline,
+      IsGerenteColumn: IsGerente
     };
     return map;
   }

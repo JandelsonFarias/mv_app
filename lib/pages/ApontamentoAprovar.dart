@@ -183,35 +183,70 @@ class _ApontamentoAprovarState extends State<ApontamentoAprovar> {
           DateTime NewTimeByDay = DateTime.parse(widget.apontamento["Apontamentos"][index]["NewTimeByDay"]);
 
           return Card(
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
                       Container(
+                        width: 250.0,
                         child: Text(widget.apontamento["Apontamentos"][index]["ResourceName"],
                           style: TextStyle(fontSize: 15.0),
-                        ),
-                        alignment: Alignment.centerLeft,
-                        width: 200.0,
+                        )
                       ),
-                      SizedBox(height: 10.0),
+                      Spacer(),
+                      Container(
+                          padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
+                          child: GestureDetector(
+                            child: Icon(Icons.mode_comment_outlined),
+                            onTap: () {
+                              AlertDialog alert = AlertDialog(
+                                title: Text("Descrição"),
+                                content: SingleChildScrollView(
+                                  child: Text(widget.apontamento["Apontamentos"][index]["ObservacoesApontamento"]),
+                                ),
+                                actions: [
+                                  FlatButton(
+                                    child: Text("OK"),
+                                    onPressed: () {
+                                      Navigator.of(context, rootNavigator: true).pop('dialog');
+                                    },
+                                  )
+                                ],
+                              );
+
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return alert;
+                                },
+                              );
+                            },
+                          )
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 10.0),
+                  Row(
+                    children: [
                       Text("${NewTimeByDay.day}/${NewTimeByDay.month}/${NewTimeByDay.year}",
                         style: TextStyle(fontSize: 15.0),
-                      ),
-                      SizedBox(height: 10.0),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 10.0),
+                  Row(
+                    children: [
                       Text(widget.apontamento["Apontamentos"][index]["HoraMinuto"],
                         style: TextStyle(fontSize: 14.0),
                       )
                     ],
                   ),
-                ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-                  child: Column(
+                  SizedBox(height: 10.0),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       RaisedButton(
                         child: Row(
@@ -253,6 +288,7 @@ class _ApontamentoAprovarState extends State<ApontamentoAprovar> {
                           }
                         },
                       ),
+                      SizedBox(width: 20.0),
                       RaisedButton(
                         child: Row(
                           children: [
@@ -289,9 +325,9 @@ class _ApontamentoAprovarState extends State<ApontamentoAprovar> {
                         },
                       )
                     ],
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           );
         }

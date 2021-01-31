@@ -173,12 +173,8 @@ class _LoginState extends State<Login> {
 
   Future<void> _btnEntrarClick() async {
 
-    print("antes da API");
-
     await loading.show();
     _efetuarLogin(usuarioController.text, senhaController.text).then((map) async {
-
-      print("depois da API");
 
       if (map != null){
 
@@ -188,6 +184,7 @@ class _LoginState extends State<Login> {
           usuario.ResourceUID = map["ResourceUID"];
           usuario.Nome = map["Nome"];
           usuario.WorkOffline = workOffline ? "1" : "0";
+          usuario.IsGerente = map["IsGerente"];
 
           helperDB.saveUsuario(usuario).then((usuario){
 
@@ -363,7 +360,7 @@ class _LoginState extends State<Login> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                'MV Sistemas',
+                                'MVT+ Mobile',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'OpenSans',
