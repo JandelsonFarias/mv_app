@@ -12,7 +12,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="MV APP"
+        android:label="MVT APP"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

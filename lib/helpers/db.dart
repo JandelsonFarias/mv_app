@@ -79,7 +79,7 @@ class HelperDB {
 
   Future<Database> initDb() async {
     final databasesPath = await getDatabasesPath();
-    final path = join(databasesPath, "mvapp.db");
+    final path = join(databasesPath, "mvtapp.db");
 
     return await openDatabase(path, version: 2, onCreate: (Database db, int newerVersion) async {
       await db.execute(

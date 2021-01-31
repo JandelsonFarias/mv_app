@@ -40,43 +40,48 @@ class _LoginState extends State<Login> {
   @override
   void initState(){
     super.initState();
-    helperDB.getUsuarioLogado().then((usuarioLogado){
-      if (usuarioLogado == null){
-        Future.delayed(
-          new Duration(seconds: 2), () => {
+    try {
+      helperDB.getUsuarioLogado().then((usuarioLogado){
+        if (usuarioLogado == null){
+          Future.delayed(
+              new Duration(seconds: 2), () => {
             setState(() {
-            verificandoUsuarioLogado = false;
+              verificandoUsuarioLogado = false;
             })
           }
-        );
-      }
-      else if (usuarioLogado.WorkOffline == "0") {
-        Future.delayed(
-          new Duration(seconds: 2), () => {
+          );
+        }
+        else if (usuarioLogado.WorkOffline == "0") {
+          Future.delayed(
+              new Duration(seconds: 2), () => {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => Home()),
                   (Route<dynamic> route) => false,
             )
           }
-        );
-      }
-      else {
-        helperDB.getProjetoSelecionado().then((projetoSelecionado){
-          if (projetoSelecionado == null){
-            helperDB.deleteUsuarioLogado().then((deleted){
-              Future.delayed(
-                new Duration(seconds: 2), () => {
+          );
+        }
+        else {
+          helperDB.getProjetoSelecionado().then((projetoSelecionado){
+            if (projetoSelecionado == null){
+              helperDB.deleteUsuarioLogado().then((deleted){
+                Future.delayed(
+                    new Duration(seconds: 2), () => {
                   setState(() {
                     verificandoUsuarioLogado = false;
                   })
                 }
-              );
-            });
-          }
-        });
-      }
-    });
+                );
+              });
+            }
+          });
+        }
+      });
+    }
+    catch (e) {
+      Alert(message: "Erro");
+    }
   }
 
   Widget _buildUsuarioField() {
