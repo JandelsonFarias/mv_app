@@ -178,7 +178,9 @@ class _ApontamentoPageState extends State<ApontamentoPage> {
                               Spacer(),
                               GestureDetector(
                                 onTap: !hasConnection ? null : () async {
-                                  if (await confirm(
+                                  await verifyConnection();
+
+                                  if (hasConnection && await confirm(
                                       context,
                                       title: Text("Atenção"),
                                       content: Text("Tem certeza que deseja enviar este apontamento de horas? Após enviado, será removida do seu dispositivo e não poderá mais ser editado."),

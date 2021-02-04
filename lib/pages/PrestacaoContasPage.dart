@@ -128,7 +128,9 @@ class _PrestacaoContasPageState extends State<PrestacaoContasPage> {
                           Spacer(),
                           GestureDetector(
                             onTap: !hasConnection ? null : () async {
-                              if (await confirm(
+                              await verifyConnection();
+
+                              if (hasConnection && await confirm(
                               context,
                               title: Text("Atenção"),
                               content: Text("Tem certeza que deseja enviar a PC ${grouped[index].CodigoGrupo}? Após enviada, será removida do seu dispositivo e não poderá mais ser editada."),

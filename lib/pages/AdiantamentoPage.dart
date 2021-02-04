@@ -168,11 +168,20 @@ class _AdiantamentoPageState extends State<AdiantamentoPage> {
                               Spacer(),
                               GestureDetector(
                                 onTap: !hasConnection ? null : () async {
-                                  if (await confirm(
+                                  await verifyConnection();
+
+                                  int day = int.parse(grouped[index].DataFim.split("/")[0]);
+                                  int month = int.parse(grouped[index].DataFim.split("/")[1]);
+                                  int year = int.parse(grouped[index].DataFim.split("/")[2]);
+
+                                  DateTime dataFim = new DateTime(year, month, day);
+                                  dataFim = dataFim.add(new Duration(days: 3));
+                                  
+                                  if (hasConnection && await confirm(
                                       context,
                                       title: Text("Atenção"),
                                       content: SingleChildScrollView(
-                                        child: Text("Tem certeza que deseja enviar a AD ${grouped[index].AdiantamentoCodigo}? Após enviada, será removida do seu dispositivo e não poderá mais ser editada.\nComo colaborador desta empresa comprometo-me a prestar contas dos valores recebidos para despesas de viagens a trabalho, com as respectivas notas fiscais até ${DateTime.now().day}/${DateTime.now().month == 12 ? 1 : DateTime.now().month + 1}/${DateTime.now().year}, após o retorno ao meu local de trabalho. Autorizo ainda em caso de não prestação de contas dentro do prazo previsto, o desconto de valores totais ou parciais correspondentes ao adiantamento recebido, em meu salário do mês, respeitados os devidos limites legais."),
+                                        child: Text("Tem certeza que deseja enviar a AD ${grouped[index].AdiantamentoCodigo}? Após enviada, será removida do seu dispositivo e não poderá mais ser editada.\nComo colaborador desta empresa comprometo-me a prestar contas dos valores recebidos para despesas de viagens a trabalho, com as respectivas notas fiscais até ${dataFim.day}/${dataFim.month}/${dataFim.year}, após o retorno ao meu local de trabalho. Autorizo ainda em caso de não prestação de contas dentro do prazo previsto, o desconto de valores totais ou parciais correspondentes ao adiantamento recebido, em meu salário do mês, respeitados os devidos limites legais."),
                                       ),
                                       textOK: Text("Sim"),
                                       textCancel: Text("Não")

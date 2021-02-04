@@ -112,7 +112,9 @@ class _PrestacaoContasGrupoState extends State<PrestacaoContasGrupo> {
               color: !hasConnection ? Colors.black12 : Colors.white,
             ),
             onPressed: !hasConnection ? null : () async {
-              if (await confirm(
+              await verifyConnection();
+
+              if (hasConnection && await confirm(
                   context,
                   title: Text("Atenção"),
                   content: Text("Tem certeza que deseja enviar a PC ${widget.prestacaoContas.CodigoGrupo}? Após enviada, será removida do seu dispositivo e não poderá mais ser editada."),

@@ -6,6 +6,7 @@ import 'package:mvapp/helpers/constants.dart';
 import 'package:mvapp/helpers/db.dart';
 import 'package:http/http.dart' as http;
 import 'package:mvapp/pages/PrestacaoContasAcompanhamentoDetalhes.dart';
+import 'package:group_button/group_button.dart';
 
 class PrestacaoContasAcompanhamento extends StatefulWidget {
   @override
@@ -24,7 +25,9 @@ class _PrestacaoContasAcompanhamentoState extends State<PrestacaoContasAcompanha
 
   HelperDB helperDB = HelperDB();
 
-  TextEditingController pesquisaController = TextEditingController();
+  bool filtro_pendente = false;
+  bool filtro_aprovado = false;
+  bool filtro_reprovado = false;
 
   void loadUsuarioLogado(){
     helperDB.getUsuarioLogado().then((usuario){
@@ -76,10 +79,34 @@ class _PrestacaoContasAcompanhamentoState extends State<PrestacaoContasAcompanha
     List<Map> temp = [];
     List<Projeto> _temp_projetos = [];
 
-    if (pesquisaController.text.isNotEmpty){
+    if (filtro_pendente || filtro_aprovado || filtro_reprovado){
       for (Map map in prestacaoContas){
 
-        if (map["GrupoCodigo"].toString().contains(pesquisaController.text)){
+        if (filtro_pendente && map["StatusPC"].toString() == "Pendente"){
+          Projeto p = _temp_projetos.firstWhere((x) => x.NomeProjeto == map["NomeProjeto"], orElse: () => null);
+
+          if (p == null) {
+            Projeto projeto = Projeto();
+            projeto.NomeProjeto = map["NomeProjeto"];
+            _temp_projetos.add(projeto);
+          }
+
+          temp.add(map);
+        }
+
+        if (filtro_aprovado && map["StatusPC"].toString() == "Aprovado"){
+          Projeto p = _temp_projetos.firstWhere((x) => x.NomeProjeto == map["NomeProjeto"], orElse: () => null);
+
+          if (p == null) {
+            Projeto projeto = Projeto();
+            projeto.NomeProjeto = map["NomeProjeto"];
+            _temp_projetos.add(projeto);
+          }
+
+          temp.add(map);
+        }
+
+        if (filtro_reprovado && map["StatusPC"].toString() == "Reprovado"){
           Projeto p = _temp_projetos.firstWhere((x) => x.NomeProjeto == map["NomeProjeto"], orElse: () => null);
 
           if (p == null) {
@@ -123,7 +150,7 @@ class _PrestacaoContasAcompanhamentoState extends State<PrestacaoContasAcompanha
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index){
-        List<Map> grouped = pesquisaController.text.isNotEmpty ? prestacaoContas_filtered.where((x) => x["NomeProjeto"] == PC_projetos[index].NomeProjeto).toList() : prestacaoContas.where((x) => x["NomeProjeto"] == PC_projetos[index].NomeProjeto).toList();
+        List<Map> grouped = filtro_pendente || filtro_aprovado || filtro_reprovado ? prestacaoContas_filtered.where((x) => x["NomeProjeto"] == PC_projetos[index].NomeProjeto).toList() : prestacaoContas.where((x) => x["NomeProjeto"] == PC_projetos[index].NomeProjeto).toList();
         return Container(
           padding: EdgeInsets.all(10.0),
           child: Column(
@@ -148,15 +175,32 @@ class _PrestacaoContasAcompanhamentoState extends State<PrestacaoContasAcompanha
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text("PC - ${grouped[index]["GrupoCodigo"]}",
-                                  style: TextStyle(fontSize: 15.0),
+                                Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                                        color: grouped[index]["StatusPC"] == "Aprovado" ? Colors.green : grouped[index]["StatusPC"] == "Reprovado" ? Colors.red : Colors.black12
+                                      ),
+                                        padding: EdgeInsets.all(7.0),
+                                        child: Container()
+                                    ),
+                                    SizedBox(width: 10.0),
+                                    Text("PC - ${grouped[index]["GrupoCodigo"]}",
+                                      style: TextStyle(fontSize: 15.0),
+                                    )
+                                  ],
                                 )
                               ],
                             ),
                           ),
                           Spacer(),
                           GestureDetector(
-                            onTap: (){},
+                            onTap: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => PrestacaoContasAcompanhamentoDetalhes(grouped[index]))
+                              );
+                            },
                             child: Container(
                               width: 80.0,
                               height: 80.0,
@@ -226,19 +270,22 @@ class _PrestacaoContasAcompanhamentoState extends State<PrestacaoContasAcompanha
               preferredSize: Size.fromHeight(2.0),
               child: Container(
                 padding: EdgeInsets.all(5.0),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  controller: pesquisaController,
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(top: 14.0),
-                      prefixIcon: Icon(Icons.search, color: Colors.black),
-                      hintText: 'Pesquisar'
-                  ),
-                  onChanged: (text){
+                child: GroupButton(
+                  isRadio: false,
+                  spacing: 10,
+                  selectedColor: Color.fromRGBO(36, 177, 139, 1),
+                  onSelected: (index, isSelected) {
+                    if (index == 0)
+                      filtro_pendente = isSelected;
+                    else if (index == 1)
+                      filtro_aprovado = isSelected;
+                    else
+                      filtro_reprovado = isSelected;
+
                     filterLists();
                   },
-                ),
+                  buttons: ["Pendente", "Aprovado", "Reprovado"],
+                )
               ),
             ),
           ),
@@ -259,7 +306,7 @@ class _PrestacaoContasAcompanhamentoState extends State<PrestacaoContasAcompanha
           //   ),
           // ),
           body: SingleChildScrollView(
-            child: ((pesquisaController.text.isNotEmpty && prestacaoContas_filtered.length == 0) || prestacaoContas.length == 0) ? _buildContainerNoData() : _builderListViewPrestacaoContas()
+            child: (((filtro_pendente || filtro_aprovado || filtro_reprovado) && prestacaoContas_filtered.length == 0) || prestacaoContas.length == 0) ? _buildContainerNoData() : _builderListViewPrestacaoContas()
         ),
       );
     }

@@ -72,7 +72,9 @@ class _PrestacaoContasAcompanhamentoDetalhesState extends State<PrestacaoContasA
             SizedBox(height: 10.0),
             _buildInfoRow("Data de Recebimento do Doc Físico", _getDateTimeString(widget.prestacaoContas["DateEmailEnviado"].toString() != "null" ? DateTime.parse(widget.prestacaoContas["DateEmailEnviado"]) : null)),
             SizedBox(height: 10.0),
-            _buildInfoRow("Valor Aprovado", currency.format(widget.prestacaoContas["ValorAprovado"]))
+            _buildInfoRow("Valor Aprovado", currency.format(widget.prestacaoContas["ValorAprovado"])),
+            SizedBox(height: 10.0),
+            _buildInfoRow("Status", widget.prestacaoContas["StatusPC"]),
           ],
         ),
       ),
