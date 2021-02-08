@@ -1,5 +1,6 @@
 # This is a generated file; do not edit or check into version control.
 alert=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\alert-1.0.1\\
+firebase_messaging=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_messaging-6.0.16\\
 flutter_plugin_android_lifecycle=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_plugin_android_lifecycle-1.0.11\\
 image_picker=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\image_picker-0.6.7+21\\
 sqflite=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\sqflite-1.2.0\\

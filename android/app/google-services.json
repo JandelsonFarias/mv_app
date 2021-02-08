@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "89632433472",
+    "project_id": "mvt-app-80aa4",
+    "storage_bucket": "mvt-app-80aa4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89632433472:android:5efd5b4b9a39747ff0c6a5",
+        "android_client_info": {
+          "package_name": "br.com.simplifiquegp.mtvapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89632433472-82mr2s5f88gsv86usba5jne138eg5uo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyBdyIdjiMl0QOmXv7cQUA1pVwvswxPxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89632433472-82mr2s5f88gsv86usba5jne138eg5uo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
