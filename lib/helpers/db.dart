@@ -720,7 +720,7 @@ class ApontamentoAssignment {
   ApontamentoAssignment.fromMap(Map map){
     TaskUID = map[TaskUIDColumn];
     AssignmentUID = map[AssignmentUIDColumn];
-    TrabalhoPrevisto = map[TrabalhoPrevistoColumn];
+    TrabalhoPrevisto = double.parse(map[TrabalhoPrevistoColumn]);
     strTrabalhoPrevisto = map[strTrabalhoPrevistoColumn];
     TimeByDay = map[TimeByDayColumn];
   }

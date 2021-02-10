@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:alert/alert.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:mvapp/helpers/constants.dart';
 import 'package:mvapp/helpers/db.dart';
@@ -16,6 +18,8 @@ class SelecionarProjetoWorkOffline extends StatefulWidget {
 
 class _SelecionarProjetoWorkOfflineState extends State<SelecionarProjetoWorkOffline> {
 
+  bool hasConnection = false;
+
   HelperDB helperDB = HelperDB();
   Usuario usuarioLogado = Usuario();
 
@@ -31,6 +35,13 @@ class _SelecionarProjetoWorkOfflineState extends State<SelecionarProjetoWorkOffl
     helperDB.getUsuarioLogado().then((usuario){
       usuarioLogado = usuario;
       LoadProjetos();
+    });
+  }
+
+  void verifyConnection() async {
+    bool con = await DataConnectionChecker().hasConnection;
+    setState(()  {
+      hasConnection = con;
     });
   }
 
@@ -182,21 +193,28 @@ class _SelecionarProjetoWorkOfflineState extends State<SelecionarProjetoWorkOffl
                           textAlign:  projetos_filtrados.length > 0 && projetos_filtrados[0].ProjectUID.isEmpty ? TextAlign.center : TextAlign.left,
                         ),
                         onTap: () async {
-                          Projeto projetoSelecionado = projetos_filtrados.length > 0 ? projetos_filtrados[index] : projetos[index];
+                          await verifyConnection();
 
-                          if (projetoSelecionado.ProjectUID.isNotEmpty){
+                          if (hasConnection){
+                            Projeto projetoSelecionado = projetos_filtrados.length > 0 ? projetos_filtrados[index] : projetos[index];
 
-                            if (await confirm(
-                                context,
-                                title: Text("Confirmar"),
-                                content: Text("Tem certeza que deseja selecionar este projeto para trabalhar offline?"),
-                                textOK: Text("Sim"),
-                                textCancel: Text("Não")
-                            )) {
-                              await loading.show();
-                              //print(projetoSelecionado.ProjectUID);
-                              SaveProjetoSelecionado(projetoSelecionado);
+                            if (projetoSelecionado.ProjectUID.isNotEmpty){
+
+                              if (await confirm(
+                                  context,
+                                  title: Text("Confirmar"),
+                                  content: Text("Tem certeza que deseja selecionar este projeto para trabalhar offline?"),
+                                  textOK: Text("Sim"),
+                                  textCancel: Text("Não")
+                              )) {
+                                await loading.show();
+                                //print(projetoSelecionado.ProjectUID);
+                                SaveProjetoSelecionado(projetoSelecionado);
+                              }
                             }
+                          }
+                          else {
+                            Alert(message: 'Por favor, conecte a internet para baixar as informações deste projeto.').show();
                           }
                         },
                       ),

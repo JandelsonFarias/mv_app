@@ -38,15 +38,20 @@ class _SelecionarAtividadeState extends State<SelecionarAtividade> {
         List<Apontamento> apontamentos = await helperDB.getApontamentosByProjectUID(widget.projeto.ProjectUID);
 
         for (var apontamentoTask in _apotamentoTasks){
+
+          List<ApontamentoAssignment> list = [];
+
           for (var apontamentoAssignment in apontamentoTask.Assignments){
             Apontamento ap = apontamentos.firstWhere((x) => x.TaskUID == apontamentoTask.TaskUID && x.TimeByDay == apontamentoAssignment.TimeByDay, orElse: () => null);
 
             if (ap == null)
-              apontamentoTask.Assignments.add(apontamentoAssignment);
+              list.add(apontamentoAssignment);
           }
 
-          if (apontamentoTask.Assignments.length > 0)
+          if (list.length > 0){
+            apontamentoTask.Assignments = list;
             temp.add(apontamentoTask);
+          }
         }
 
         setState(() {

@@ -202,10 +202,12 @@ class _FormApontamentoState extends State<FormApontamento> with ApontamentoValid
                           MaterialPageRoute(builder: (context) => SelecionarAtividade(ProjetoSelecionado, usuarioLogado))
                       ).then((e){
                         if (e != null){
-                          widget.apontamento.TaskUID = e.TaskUID;
-                          widget.apontamento.TaskName = e.TaskName;
-                          widget.apontamento.AssignmentUID = e.AssignmentUID;
-                          widget.apontamento.TimeByDay = e.TimeByDay;
+                          setState(() {
+                            widget.apontamento.TaskUID = e.TaskUID;
+                            widget.apontamento.TaskName = e.TaskName;
+                            widget.apontamento.AssignmentUID = e.AssignmentUID;
+                            widget.apontamento.TimeByDay = e.TimeByDay;
+                          });
                         }
                       });
                     }

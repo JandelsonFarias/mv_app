@@ -73,6 +73,15 @@ class _LoginState extends State<Login> {
                 );
               });
             }
+            else {
+              Future.delayed(new Duration(seconds: 2), () => {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                      (Route<dynamic> route) => false,
+                )
+              });
+            }
           });
         }
       });
