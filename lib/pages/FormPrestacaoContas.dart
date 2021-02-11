@@ -318,7 +318,8 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
                     lastDate: DateTime(DateTime.now().year + 1),
                     dateFormat: "dd-MM-yyyy",
                     locale: DateTimePickerLocale.pt_br,
-                    looping: true
+                    looping: true,
+                    titleText: "Selecionar Data"
                   );
 
                   setState(() {

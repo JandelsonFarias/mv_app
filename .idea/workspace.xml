@@ -12,11 +12,9 @@
     <list default="true" id="462d9e25-f387-4691-8a09-b33ebd61d60d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/helpers/db.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/helpers/db.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/FormAdiantamento.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormAdiantamento.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/FormApontamento.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormApontamento.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/Login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/Login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/SelecionarAtividade.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/SelecionarAtividade.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/SelecionarProjetoWorkOffline.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/SelecionarProjetoWorkOffline.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/FormPrestacaoContas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormPrestacaoContas.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,19 +129,19 @@
     </state>
     <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1612996664665" />
     <state x="2040" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607289774804" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1612996166810">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1613072893036">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1612996166810" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613072893036" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1607285303051" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610927062011">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610927062011" />
-    <state x="761" y="112" width="607" height="804" key="find.popup" timestamp="1612715966132">
+    <state x="761" y="112" width="607" height="804" key="find.popup" timestamp="1613072869455">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="761" y="112" width="607" height="804" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1612715966132" />
+    <state x="761" y="112" width="607" height="804" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1613072869455" />
     <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1610327944008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -288,7 +288,8 @@ class _FormApontamentoState extends State<FormApontamento> with ApontamentoValid
                           lastDate: DateTime(DateTime.now().year + 1),
                           dateFormat: "dd-MM-yyyy",
                           locale: DateTimePickerLocale.pt_br,
-                          looping: true
+                          looping: true,
+                          titleText: "Selecionar Data"
                       );
 
                       setState(() {

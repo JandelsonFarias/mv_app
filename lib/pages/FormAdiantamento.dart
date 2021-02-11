@@ -196,13 +196,14 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
                     ),
                     onTap: () async {
                       var datePicked = await DatePicker.showSimpleDatePicker(
-                          context,
-                          initialDate: SelectedDataInicio?? DateTime.now(),
-                          firstDate: DateTime.now().subtract(new Duration(days: 60)),
-                          lastDate: DateTime(DateTime.now().year + 1),
-                          dateFormat: "dd-MM-yyyy",
-                          locale: DateTimePickerLocale.pt_br,
-                          looping: true
+                        context,
+                        initialDate: SelectedDataInicio?? DateTime.now(),
+                        firstDate: DateTime.now().subtract(new Duration(days: 60)),
+                        lastDate: DateTime(DateTime.now().year + 1),
+                        dateFormat: "dd-MM-yyyy",
+                        locale: DateTimePickerLocale.pt_br,
+                        looping: true,
+                        titleText: "Selecionar Data"
                       );
 
                       setState(() {
@@ -275,7 +276,8 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
                           lastDate: DateTime(DateTime.now().year + 1),
                           dateFormat: "dd-MM-yyyy",
                           locale: DateTimePickerLocale.pt_br,
-                          looping: true
+                          looping: true,
+                          titleText: "Selecionar Data"
                       );
 
                       setState(() {
