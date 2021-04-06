@@ -8,6 +8,7 @@ final String ResourceUIDColumn = "ResourceUIDColumn";
 final String NomeColumn = "NomeColumn";
 final String WorkOfflineColumn = "WorkOfflineColumn";
 final String IsGerenteColumn = "IsGerenteColumn";
+final String AtualizadoEmColumn = "AtualizadoEmColumn";
 
 //TABELA PROJETO
 final String ProjetoTable = "ProjetoTable";
@@ -83,7 +84,7 @@ class HelperDB {
 
     return await openDatabase(path, version: 2, onCreate: (Database db, int newerVersion) async {
       await db.execute(
-          "CREATE TABLE $UsuarioTable($UsuarioUIDColumn TEXT, $ResourceUIDColumn TEXT, $NomeColumn TEXT, $WorkOfflineColumn TEXT, $IsGerenteColumn TEXT)"
+          "CREATE TABLE $UsuarioTable($UsuarioUIDColumn TEXT, $ResourceUIDColumn TEXT, $NomeColumn TEXT, $WorkOfflineColumn TEXT, $IsGerenteColumn TEXT, $AtualizadoEmColumn TEXT)"
       );
 
       await db.execute(
@@ -127,7 +128,7 @@ class HelperDB {
   Future<Usuario> getUsuarioLogado() async {
     Database mvappDB = await db;
     List<Map> maps = await mvappDB.query(UsuarioTable,
-      columns: [UsuarioUIDColumn, ResourceUIDColumn, NomeColumn, WorkOfflineColumn, IsGerenteColumn]);
+      columns: [UsuarioUIDColumn, ResourceUIDColumn, NomeColumn, WorkOfflineColumn, IsGerenteColumn, AtualizadoEmColumn]);
     
     if (maps.length > 0)
       return Usuario.fromMap(maps.first);
@@ -459,6 +460,7 @@ class Usuario {
   String Nome;
   String WorkOffline;
   bool IsGerente;
+  String AtualizadoEm;
 
   Usuario();
 
@@ -468,6 +470,7 @@ class Usuario {
     Nome = map[NomeColumn];
     WorkOffline = map[WorkOfflineColumn];
     IsGerente = map[IsGerenteColumn] == "1" ? true : false;
+    AtualizadoEm = map[AtualizadoEmColumn];
   }
 
   Map toMap() {
@@ -476,7 +479,8 @@ class Usuario {
       ResourceUIDColumn: ResourceUID,
       NomeColumn: Nome,
       WorkOfflineColumn: WorkOffline,
-      IsGerenteColumn: IsGerente
+      IsGerenteColumn: IsGerente,
+      AtualizadoEmColumn: AtualizadoEm
     };
     return map;
   }
@@ -805,14 +809,14 @@ class PrestacaoContasAprovacaoPOST {
   String PrestacaoConta_GrupoUID;
   String StatusAprovacao;
   String JustificativaAprovacao;
-  List<String> PrestacaoContasUIDs;
+  List<PrestacaoContas> Pcs;
 
   Map<String, dynamic> toJson() {
     return {
       'PrestacaoConta_GrupoUID': PrestacaoConta_GrupoUID,
       'StatusAprovacao': StatusAprovacao,
       'JustificativaAprovacao': JustificativaAprovacao,
-      'PrestacaoContasUIDs' : PrestacaoContasUIDs
+      'PrestacaoContas' : Pcs
     };
   }
 }

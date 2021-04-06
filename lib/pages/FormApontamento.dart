@@ -281,19 +281,18 @@ class _FormApontamentoState extends State<FormApontamento> with ApontamentoValid
                       ),
                     ),
                     onTap: () async {
-                      var datePicked = await DatePicker.showSimpleDatePicker(
-                          context,
+                      showDatePicker(
+                          context: context,
                           initialDate: SelectedData?? DateTime.now(),
-                          firstDate: DateTime.now().subtract(new Duration(days: 60)),
-                          lastDate: DateTime(DateTime.now().year + 1),
-                          dateFormat: "dd-MM-yyyy",
-                          locale: DateTimePickerLocale.pt_br,
-                          looping: true,
-                          titleText: "Selecionar Data"
-                      );
-
-                      setState(() {
-                        SelectedData = datePicked;
+                          firstDate: DateTime.now().subtract(new Duration(days: 120)),
+                          lastDate: DateTime.now(),
+                          locale: const Locale("pt","BR")
+                      ).then((date) {
+                        if (date != null){
+                          setState(() {
+                            SelectedData = new DateTime(date.year, date.month, date.day);
+                          });
+                        }
                       });
                     }
                 ),

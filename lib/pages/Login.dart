@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
 
   HelperDB helperDB = HelperDB();
 
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey_login = GlobalKey<FormState>();
 
   TextEditingController usuarioController = TextEditingController();
   TextEditingController senhaController = TextEditingController();
@@ -197,6 +197,7 @@ class _LoginState extends State<Login> {
           usuario.Nome = map["Nome"];
           usuario.WorkOffline = workOffline ? "1" : "0";
           usuario.IsGerente = map["IsGerente"];
+          usuario.AtualizadoEm = DateTime.now().toString();
 
           helperDB.saveUsuario(usuario).then((usuario){
 
@@ -308,9 +309,9 @@ class _LoginState extends State<Login> {
         insetAnimCurve: Curves.easeInOut
     );
 
-    if  (verificandoUsuarioLogado) {
-      return Scaffold(
-        body: Center(
+    return Scaffold(
+      body: verificandoUsuarioLogado ?
+        Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -319,69 +320,65 @@ class _LoginState extends State<Login> {
                 width: 200.0,
                 height: 200.0,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/MV.png")
-                  )
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/MV.png")
+                    )
                 ),
               ),
               CircularProgressIndicator()
             ],
           )
-        ),
-      );
-    }
-    else {
-      return Scaffold(
-          body: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
+        )
+      :
+      AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
                       color: Color.fromRGBO(36, 177, 139, 1)
-                    )
-                  ),
-                  Container(
-                    height: double.infinity,
-                    child: SingleChildScrollView(
-                        physics: AlwaysScrollableScrollPhysics(),
-                        padding:
-                        EdgeInsets.symmetric(horizontal: 40.0, vertical: 120.0),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                'MVT+ Mobile',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 30.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(height: 30.0),
-                              _buildUsuarioField(),
-                              SizedBox(height: 15.0),
-                              _buildPasswordField(),
-                              SizedBox(height: 15.0),
-                              _buidSwitchWorkOffline(),
-                              SizedBox(height: 40.0),
-                              _buildButtonSignIn()
-                            ],
-                          ),
-                        )
-                    ),
                   )
-                ],
               ),
-            ),
-          )
-      );
-    }
+              Container(
+                height: double.infinity,
+                child: SingleChildScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    padding:
+                    EdgeInsets.symmetric(horizontal: 40.0, vertical: 120.0),
+                    child: Form(
+                      key: _formKey_login,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'MVT+ Mobile',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'OpenSans',
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 30.0),
+                          _buildUsuarioField(),
+                          SizedBox(height: 15.0),
+                          _buildPasswordField(),
+                          SizedBox(height: 15.0),
+                          _buidSwitchWorkOffline(),
+                          SizedBox(height: 40.0),
+                          _buildButtonSignIn()
+                        ],
+                      ),
+                    )
+                ),
+              )
+            ],
+          ),
+        ),
+      )
+    );
   }
 }

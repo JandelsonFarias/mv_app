@@ -58,6 +58,9 @@ class _AdiantamentoAprovacaoState extends State<AdiantamentoAprovacao> {
       if (this.mounted){
         setState(() {
           adiantamentos = temp;
+          adiantamentos.sort((a,b) {
+            return a["ProjectName"].compareTo(b["ProjectName"]);
+          });
           carregando = false;
         });
       }
@@ -178,6 +181,14 @@ class _AdiantamentoAprovacaoState extends State<AdiantamentoAprovacao> {
                               );
                             },
                           )
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 5.0),
+                  Row(
+                    children: [
+                      Text("${adiantamentos[index]["ProjectName"]}",
+                        style: TextStyle(fontSize: 15.0),
                       )
                     ],
                   ),

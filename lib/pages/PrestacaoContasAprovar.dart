@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:alert/alert.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:mvapp/helpers/constants.dart';
@@ -176,6 +177,64 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
     });
   }
 
+  List<PrestacaoContas> pcs_glosas = [];
+
+  Future _createGlosaDialog(BuildContext context, String prestacaoContasUID){
+    MoneyMaskedTextController valueController = new MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.');
+
+    return showDialog(context: context, builder: (context) {
+      return AlertDialog(
+        title: Text("Deseja glosar o valor da PC?"),
+        content: SingleChildScrollView(
+          child: TextField(
+            controller: valueController,
+            decoration: InputDecoration(
+              hintText: "Valor"
+            ),
+          ),
+        ),
+        actions: <Widget> [
+          MaterialButton(
+              child: Text("Ok"),
+              elevation: 5.0,
+              onPressed: () async {
+                if (valueController.value != null && valueController.numberValue != null && valueController.numberValue > 0){
+                  PrestacaoContas pc = pcs_glosas.length > 0 ? pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == prestacaoContasUID, orElse: null) : PrestacaoContas();
+
+                  if (pc != null && pc.PrestacaoContasUID == prestacaoContasUID){
+                   setState(() {
+                     pc.Valor = valueController.numberValue;
+                   });
+                  }
+                  else {
+                    pc = PrestacaoContas();
+                    pc.PrestacaoContasUID = prestacaoContasUID;
+                    pc.Valor = valueController.numberValue;
+
+                    setState(() {
+                      pcs_glosas.add(pc);
+                    });
+                  }
+
+                  Navigator.of(context).pop();
+                }
+                else {
+                  await Alert(message: "Informe o valor").show();
+                }
+              }
+          ),
+          MaterialButton(
+              child: Text("Cancelar"),
+              elevation: 5.0,
+              onPressed: (){
+                Navigator.of(context).pop("");
+              }
+          )
+        ],
+      );
+    });
+  }
+
   Widget _builderListViewPrestacaoContas(){
     return ListView.builder(
         padding: EdgeInsets.all(5.0),
@@ -185,6 +244,8 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
         itemBuilder: (context, index){
 
           DateTime data = DateTime.parse(widget.prestacaoContas["_PrestacaoContas"][index]["Data"]);
+
+          PrestacaoContas pc_glosa = pcs_glosas.length > 0 ? pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == widget.prestacaoContas["_PrestacaoContas"][index]["PrestacaoContasUID"], orElse: (){return null;}) : null;
 
           return Card(
             child: Padding(
@@ -243,7 +304,22 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                   Row(
                     children: [
                       Text(currency.format(widget.prestacaoContas["_PrestacaoContas"][index]["Valor"]),
-                        style: TextStyle(fontSize: 14.0),
+                        style: TextStyle(fontSize: 14.0, decoration: pc_glosa != null ? TextDecoration.lineThrough : TextDecoration.none),
+                      ),
+                      SizedBox(width: 10),
+                      pc_glosa != null ?
+                        Text(currency.format(pc_glosa.Valor),
+                          style: TextStyle(fontSize: 14.0),
+                        )
+                      :
+                        Container()
+                      ,
+                      SizedBox(width: 10),
+                      GestureDetector(
+                        child: Icon(Icons.edit, size: 18),
+                        onTap: (){
+                          _createGlosaDialog(context, widget.prestacaoContas["_PrestacaoContas"][index]["PrestacaoContasUID"]);
+                        },
                       )
                     ],
                   ),
@@ -295,9 +371,8 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                             PrestacaoContasAprovacaoPOST prestacaoContasAprovacaoPOST = PrestacaoContasAprovacaoPOST();
                             prestacaoContasAprovacaoPOST.PrestacaoConta_GrupoUID = widget.prestacaoContas["PrestacaoConta_GrupoUID"];
                             prestacaoContasAprovacaoPOST.StatusAprovacao = "Aprovado";
-                            prestacaoContasAprovacaoPOST.PrestacaoContasUIDs = [];
-                            prestacaoContasAprovacaoPOST.PrestacaoContasUIDs.add(widget.prestacaoContas["_PrestacaoContas"][index]["PrestacaoContasUID"]);
-
+                            prestacaoContasAprovacaoPOST.Pcs = [];
+                            prestacaoContasAprovacaoPOST.Pcs.add(pc_glosa?? widget.prestacaoContas["_PrestacaoContas"][index]);
                             map_remove = widget.prestacaoContas["_PrestacaoContas"][index];
 
                             await AprovarReprovarPC(prestacaoContasAprovacaoPOST);
@@ -319,8 +394,8 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                               prestacaoContasAprovacaoPOST.PrestacaoConta_GrupoUID = widget.prestacaoContas["PrestacaoConta_GrupoUID"];
                               prestacaoContasAprovacaoPOST.StatusAprovacao = "Reprovado";
                               prestacaoContasAprovacaoPOST.JustificativaAprovacao = value;
-                              prestacaoContasAprovacaoPOST.PrestacaoContasUIDs = [];
-                              prestacaoContasAprovacaoPOST.PrestacaoContasUIDs.add(widget.prestacaoContas["_PrestacaoContas"][index]["PrestacaoContasUID"]);
+                              prestacaoContasAprovacaoPOST.Pcs = [];
+                              prestacaoContasAprovacaoPOST.Pcs.add(widget.prestacaoContas["_PrestacaoContas"][index]);
 
                               map_remove = widget.prestacaoContas["_PrestacaoContas"][index];
 
@@ -399,10 +474,10 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                         prestacaoContasAprovacaoPOST.PrestacaoConta_GrupoUID = widget.prestacaoContas["PrestacaoConta_GrupoUID"];
                         prestacaoContasAprovacaoPOST.StatusAprovacao = "Reprovado";
                         prestacaoContasAprovacaoPOST.JustificativaAprovacao = value;
-                        prestacaoContasAprovacaoPOST.PrestacaoContasUIDs = [];
+                        prestacaoContasAprovacaoPOST.Pcs = [];
 
                         for (Map map in widget.prestacaoContas["_PrestacaoContas"]){
-                          prestacaoContasAprovacaoPOST.PrestacaoContasUIDs.add(map["PrestacaoContasUID"]);
+                          prestacaoContasAprovacaoPOST.Pcs.add(PrestacaoContas.fromMap(map));
                         }
 
                         await AprovarReprovarPC(prestacaoContasAprovacaoPOST);
@@ -430,10 +505,11 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                       PrestacaoContasAprovacaoPOST prestacaoContasAprovacaoPOST = PrestacaoContasAprovacaoPOST();
                       prestacaoContasAprovacaoPOST.PrestacaoConta_GrupoUID = widget.prestacaoContas["PrestacaoConta_GrupoUID"];
                       prestacaoContasAprovacaoPOST.StatusAprovacao = "Aprovado";
-                      prestacaoContasAprovacaoPOST.PrestacaoContasUIDs = [];
+                      prestacaoContasAprovacaoPOST.Pcs = [];
 
                       for (Map map in widget.prestacaoContas["_PrestacaoContas"]){
-                        prestacaoContasAprovacaoPOST.PrestacaoContasUIDs.add(map["PrestacaoContasUID"]);
+                        PrestacaoContas pc_glosa = pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == map["PrestacaoContasUID"], orElse: null);
+                        prestacaoContasAprovacaoPOST.Pcs.add(pc_glosa?? PrestacaoContas.fromMap(map));
                       }
 
                       await AprovarReprovarGrupo(prestacaoContasAprovacaoPOST);

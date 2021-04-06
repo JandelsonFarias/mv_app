@@ -195,20 +195,33 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
                       ),
                     ),
                     onTap: () async {
-                      var datePicked = await DatePicker.showSimpleDatePicker(
-                        context,
-                        initialDate: SelectedDataInicio?? DateTime.now(),
-                        firstDate: DateTime.now().subtract(new Duration(days: 60)),
-                        lastDate: DateTime(DateTime.now().year + 1),
-                        dateFormat: "dd-MM-yyyy",
-                        locale: DateTimePickerLocale.pt_br,
-                        looping: true,
-                        titleText: "Selecionar Data"
-                      );
-
-                      setState(() {
-                        SelectedDataInicio = datePicked;
+                      showDatePicker(
+                          context: context,
+                          initialDate: SelectedDataInicio?? DateTime.now(),
+                          firstDate: DateTime.now().subtract(new Duration(days: 60)),
+                          lastDate: DateTime(DateTime.now().year + 1),
+                          locale: const Locale("pt","BR")
+                      ).then((date) {
+                        if (date != null){
+                          setState(() {
+                            SelectedDataInicio = new DateTime(date.year, date.month, date.day);
+                          });
+                        }
                       });
+                      // var datePicked = await DatePicker.showSimpleDatePicker(
+                      //   context,
+                      //   initialDate: SelectedDataInicio?? DateTime.now(),
+                      //   firstDate: DateTime.now().subtract(new Duration(days: 60)),
+                      //   lastDate: DateTime(DateTime.now().year + 1),
+                      //   dateFormat: "dd-MM-yyyy",
+                      //   locale: DateTimePickerLocale.pt_br,
+                      //   looping: true,
+                      //   titleText: "Selecionar Data"
+                      // );
+                      //
+                      // setState(() {
+                      //   SelectedDataInicio = datePicked;
+                      // });
                     }
                 ),
                 Visibility(
@@ -269,20 +282,33 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
                       ),
                     ),
                     onTap: () async {
-                      var datePicked = await DatePicker.showSimpleDatePicker(
-                          context,
+                      showDatePicker(
+                          context: context,
                           initialDate: SelectedDataFim?? DateTime.now(),
                           firstDate: DateTime.now().subtract(new Duration(days: 60)),
                           lastDate: DateTime(DateTime.now().year + 1),
-                          dateFormat: "dd-MM-yyyy",
-                          locale: DateTimePickerLocale.pt_br,
-                          looping: true,
-                          titleText: "Selecionar Data"
-                      );
-
-                      setState(() {
-                        SelectedDataFim = datePicked;
+                          locale: const Locale("pt","BR")
+                      ).then((date) {
+                        if (date != null){
+                          setState(() {
+                            SelectedDataFim = new DateTime(date.year, date.month, date.day);
+                          });
+                        }
                       });
+                      // var datePicked = await DatePicker.showSimpleDatePicker(
+                      //     context,
+                      //     initialDate: SelectedDataFim?? DateTime.now(),
+                      //     firstDate: DateTime.now().subtract(new Duration(days: 60)),
+                      //     lastDate: DateTime(DateTime.now().year + 1),
+                      //     dateFormat: "dd-MM-yyyy",
+                      //     locale: DateTimePickerLocale.pt_br,
+                      //     looping: true,
+                      //     titleText: "Selecionar Data"
+                      // );
+                      //
+                      // setState(() {
+                      //   SelectedDataFim = datePicked;
+                      // });
                     }
                 ),
                 Visibility(

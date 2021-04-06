@@ -311,19 +311,18 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
                   ),
                 ),
                 onTap: () async {
-                  var datePicked = await DatePicker.showSimpleDatePicker(
-                    context,
+                  showDatePicker(
+                    context: context,
                     initialDate: SelectedDate?? DateTime.now(),
                     firstDate: DateTime.now().subtract(new Duration(days: 60)),
                     lastDate: DateTime(DateTime.now().year + 1),
-                    dateFormat: "dd-MM-yyyy",
-                    locale: DateTimePickerLocale.pt_br,
-                    looping: true,
-                    titleText: "Selecionar Data"
-                  );
-
-                  setState(() {
-                    SelectedDate = datePicked;
+                    locale: const Locale("pt","BR")
+                  ).then((date) {
+                    if (date != null){
+                      setState(() {
+                        SelectedDate = new DateTime(date.year, date.month, date.day);
+                      });
+                    }
                   });
                 }
               ),
