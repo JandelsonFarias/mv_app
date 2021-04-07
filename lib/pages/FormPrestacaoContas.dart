@@ -45,6 +45,8 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
   MoneyMaskedTextController ValorController = new MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.');
   TextEditingController DescricaoController = TextEditingController();
 
+  bool carregando = true;
+
   @override
   void initState(){
     super.initState();
@@ -148,6 +150,8 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
           ProjetoSelecionado.NomeProjeto = widget.prestacaoContas.NomeProjeto;
           LoadDespesas();
         }
+
+        carregando = false;
       });
     }
   }
@@ -224,9 +228,14 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
           )
         ],
       ),
-      body: Projetos.length == 0 ?
+      body: carregando ?
       Center(
         child: CircularProgressIndicator(),
+      )
+      :
+      Projetos.length == 0 ?
+      Center(
+        child: Text("Esse usuário não está alocado em nenhum projeto."),
       )
           :
       SingleChildScrollView(
@@ -433,7 +442,7 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.save),
         backgroundColor: Color.fromRGBO(36, 177, 139, 1),
-        onPressed: (){
+        onPressed: !carregando && Projetos.length == 0 ? null : (){
           setState(() {
             validar = true;
           });

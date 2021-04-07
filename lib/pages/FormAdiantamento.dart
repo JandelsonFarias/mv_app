@@ -39,6 +39,8 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
   MoneyMaskedTextController ValorApontadoController = new MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.');
   TextEditingController JustificativaController = TextEditingController();
 
+  bool carregando = true;
+
   @override
   void initState(){
     super.initState();
@@ -109,7 +111,7 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
         Projeto p = Projeto();
         p.ProjectUID = item["ProjectUID"];
         p.NomeProjeto = item["NomeProjeto"];
-        Projetos.add(p);
+        //Projetos.add(p);
       }
 
       setState(() {
@@ -119,6 +121,8 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
           ProjetoSelecionado.ProjectUID = widget.adiantamento.ProjectUID;
           ProjetoSelecionado.NomeProjeto = widget.adiantamento.NomeProjeto;
         }
+
+        carregando = false;
       });
     }
   }
@@ -130,9 +134,14 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
         title: Text("AD - " + widget.adiantamento.AdiantamentoCodigo),
         backgroundColor: Color.fromRGBO(36, 177, 139, 1)
       ),
-      body: Projetos.length == 0 ?
+      body: carregando ?
       Center(
         child: CircularProgressIndicator(),
+      )
+          :
+      Projetos.length == 0 ?
+      Center(
+        child: Text("Esse usuário não está alocado em nenhum projeto."),
       )
           :
       SingleChildScrollView(
@@ -367,7 +376,7 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.save),
         backgroundColor: Color.fromRGBO(36, 177, 139, 1),
-        onPressed: (){
+        onPressed: !carregando && Projetos.length == 0 ? null : (){
           setState(() {
             validar = true;
           });

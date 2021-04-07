@@ -43,6 +43,8 @@ class _FormApontamentoState extends State<FormApontamento> with ApontamentoValid
   TextEditingController HorasApontadasController = TextEditingController();
   TextEditingController HorasRestantesController = TextEditingController();
 
+  bool carregando = true;
+
   LoadProjetos() async {
     http.Response response;
     response = await http.get(baseApiURL + "Projeto/GetProjetosApontamento/?ResourceUID=" + usuarioLogado.ResourceUID);
@@ -66,6 +68,8 @@ class _FormApontamentoState extends State<FormApontamento> with ApontamentoValid
           ProjetoSelecionado.ProjectUID = widget.apontamento.ProjectUID;
           ProjetoSelecionado.NomeProjeto = widget.apontamento.NomeProjeto;
         }
+
+        carregando = false;
       });
     }
   }
@@ -134,9 +138,14 @@ class _FormApontamentoState extends State<FormApontamento> with ApontamentoValid
           title: Text("Apontamento"),
           backgroundColor: Color.fromRGBO(36, 177, 139, 1)
       ),
-      body: Projetos.length == 0 ?
+      body: carregando ?
       Center(
         child: CircularProgressIndicator(),
+      )
+          :
+      Projetos.length == 0 ?
+      Center(
+        child: Text("Esse usuário não está alocado em nenhum projeto."),
       )
           :
       SingleChildScrollView(
@@ -327,7 +336,7 @@ class _FormApontamentoState extends State<FormApontamento> with ApontamentoValid
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.save),
         backgroundColor: Color.fromRGBO(36, 177, 139, 1),
-        onPressed: (){
+        onPressed: !carregando && Projetos.length == 0 ? null : (){
           setState(() {
             validar = true;
           });
