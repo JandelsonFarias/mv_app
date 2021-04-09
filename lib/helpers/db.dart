@@ -82,7 +82,7 @@ class HelperDB {
     final databasesPath = await getDatabasesPath();
     final path = join(databasesPath, "mvtapp.db");
 
-    return await openDatabase(path, version: 2, onCreate: (Database db, int newerVersion) async {
+    return await openDatabase(path, version: 3, onCreate: (Database db, int newerVersion) async {
       await db.execute(
           "CREATE TABLE $UsuarioTable($UsuarioUIDColumn TEXT, $ResourceUIDColumn TEXT, $NomeColumn TEXT, $WorkOfflineColumn TEXT, $IsGerenteColumn TEXT, $AtualizadoEmColumn TEXT)"
       );
@@ -599,7 +599,7 @@ class PrestacaoContas {
       'DespesaUID': DespesaUID,
       'ProjectUID': ProjectUID,
       'CodigoGrupo': CodigoGrupo,
-      'Data': "${Data.split("/")[2]}-${Data.split("/")[1]}-${Data.split("/")[0]}",
+      'Data': Data != null ? "${Data.split("/")[2]}-${Data.split("/")[1]}-${Data.split("/")[0]}" : "",
       'Valor': Valor,
       'Descricao': Descricao,
       'UsuarioUID': UsuarioUID,
@@ -816,7 +816,7 @@ class PrestacaoContasAprovacaoPOST {
       'PrestacaoConta_GrupoUID': PrestacaoConta_GrupoUID,
       'StatusAprovacao': StatusAprovacao,
       'JustificativaAprovacao': JustificativaAprovacao,
-      'PrestacaoContas' : Pcs
+      'Pcs' : Pcs
     };
   }
 }

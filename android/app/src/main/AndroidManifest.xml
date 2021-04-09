@@ -12,6 +12,8 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
+        android:allowBackup="false"
+        android:fullBackupOnly="false"
         android:label="MVT APP"
         android:icon="@mipmap/launcher_icon">
         <activity

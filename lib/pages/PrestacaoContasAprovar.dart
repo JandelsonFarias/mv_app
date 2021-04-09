@@ -199,7 +199,7 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
               elevation: 5.0,
               onPressed: () async {
                 if (valueController.value != null && valueController.numberValue != null && valueController.numberValue > 0){
-                  PrestacaoContas pc = pcs_glosas.length > 0 ? pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == prestacaoContasUID, orElse: null) : PrestacaoContas();
+                  PrestacaoContas pc = pcs_glosas.length > 0 ? pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == prestacaoContasUID, orElse: (){return null;}) : PrestacaoContas();
 
                   if (pc != null && pc.PrestacaoContasUID == prestacaoContasUID){
                    setState(() {
@@ -508,7 +508,7 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
                       prestacaoContasAprovacaoPOST.Pcs = [];
 
                       for (Map map in widget.prestacaoContas["_PrestacaoContas"]){
-                        PrestacaoContas pc_glosa = pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == map["PrestacaoContasUID"], orElse: null);
+                        PrestacaoContas pc_glosa = pcs_glosas.length > 0 ? pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == map["PrestacaoContasUID"], orElse: (){return null;}) : null;
                         prestacaoContasAprovacaoPOST.Pcs.add(pc_glosa?? PrestacaoContas.fromMap(map));
                       }
 
