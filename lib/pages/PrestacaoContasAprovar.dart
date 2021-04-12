@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:alert/alert.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:mvapp/helpers/constants.dart';
 import 'package:mvapp/helpers/db.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:mvapp/validators/PrestacaoContasValidator.dart';
 
 class PrestacaoContasAprovar extends StatefulWidget {
 
@@ -21,7 +21,7 @@ class PrestacaoContasAprovar extends StatefulWidget {
   _PrestacaoContasAprovarState createState() => _PrestacaoContasAprovarState();
 }
 
-class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
+class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar>  with PrestacaoContasValidator {
 
   ProgressDialog loading;
 
@@ -180,48 +180,67 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar> {
   List<PrestacaoContas> pcs_glosas = [];
 
   Future _createGlosaDialog(BuildContext context, String prestacaoContasUID){
-    MoneyMaskedTextController valueController = new MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.');
+    PrestacaoContas pc_glosa = pcs_glosas.length > 0 ? pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == prestacaoContasUID, orElse: (){return null;}) : null;
+
+    MoneyMaskedTextController ValorController = new MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.', initialValue: pc_glosa != null ? pc_glosa.Valor : 0);
+    TextEditingController ObservacoesController = TextEditingController(text: pc_glosa != null ? pc_glosa.JustificativaGP : "");
+    final _formKey = GlobalKey<FormState>();
 
     return showDialog(context: context, builder: (context) {
       return AlertDialog(
-        title: Text("Deseja glosar o valor da PC?"),
+        title: Text("Deseja editar o valor da PC?"),
         content: SingleChildScrollView(
-          child: TextField(
-            controller: valueController,
-            decoration: InputDecoration(
-              hintText: "Valor"
-            ),
-          ),
+          child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Valor"),
+                  ),
+                  TextFormField(
+                    controller: ValorController,
+                    keyboardType: TextInputType.number,
+                    validator: validateValor,
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Observações"),
+                  ),
+                  TextFormField(
+                    controller: ObservacoesController,
+                    maxLines: 4,
+                    validator: validateObservacoes,
+                  )
+                ],
+              )
+          )
         ),
         actions: <Widget> [
           MaterialButton(
-              child: Text("Ok"),
-              elevation: 5.0,
-              onPressed: () async {
-                if (valueController.value != null && valueController.numberValue != null && valueController.numberValue > 0){
+            child: Text("Ok"),
+            elevation: 5.0,
+            onPressed: () async {
+              if (_formKey.currentState.validate()){
+                setState(() {
                   PrestacaoContas pc = pcs_glosas.length > 0 ? pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == prestacaoContasUID, orElse: (){return null;}) : PrestacaoContas();
-
                   if (pc != null && pc.PrestacaoContasUID == prestacaoContasUID){
-                   setState(() {
-                     pc.Valor = valueController.numberValue;
-                   });
+                    pc.Valor = ValorController.numberValue;
+                    pc.JustificativaGP = ObservacoesController.text;
                   }
                   else {
                     pc = PrestacaoContas();
                     pc.PrestacaoContasUID = prestacaoContasUID;
-                    pc.Valor = valueController.numberValue;
-
-                    setState(() {
-                      pcs_glosas.add(pc);
-                    });
+                    pc.Valor = ValorController.numberValue;
+                    pc.JustificativaGP = ObservacoesController.text;
+                    pcs_glosas.add(pc);
                   }
+                });
 
-                  Navigator.of(context).pop();
-                }
-                else {
-                  await Alert(message: "Informe o valor").show();
-                }
+                Navigator.of(context).pop();
               }
+            }
           ),
           MaterialButton(
               child: Text("Cancelar"),

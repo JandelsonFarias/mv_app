@@ -204,7 +204,9 @@ class _ApontamentoPageState extends State<ApontamentoPage> {
                                         if (response.body.isNotEmpty) {
                                           var map = json.decode(response.body);
 
-                                          String erros = map["erros"].toString().replaceAll(";", "\n");
+                                          String erros = map.toString().replaceAll(";", "\n");
+                                          
+                                          if (map.toString().contains("Apontamento já realizado")) erros = "Já existe um apontamento para esta atividade nesta data. Selecione outro dia.";
 
                                           AlertDialog alert = AlertDialog(
                                             title: Text("Apontamento não enviado."),

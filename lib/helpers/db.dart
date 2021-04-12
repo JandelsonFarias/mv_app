@@ -543,6 +543,7 @@ class PrestacaoContas {
   String UsuarioUID;
   String LinkAnexo;
   String Erros;
+  String JustificativaGP;
 
   PrestacaoContas();
 
@@ -603,7 +604,8 @@ class PrestacaoContas {
       'Valor': Valor,
       'Descricao': Descricao,
       'UsuarioUID': UsuarioUID,
-      'LinkAnexo' : LinkAnexo
+      'LinkAnexo': LinkAnexo,
+      'JustificativaGP': JustificativaGP
     };
   }
 }

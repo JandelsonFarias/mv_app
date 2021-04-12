@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:alert/alert.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_holo_date_picker/date_picker.dart';
-import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:mvapp/helpers/constants.dart';
 import 'package:mvapp/helpers/db.dart';
 import 'package:http/http.dart' as http;
