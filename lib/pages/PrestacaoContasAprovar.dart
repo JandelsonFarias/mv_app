@@ -206,7 +206,7 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar>  with P
                   SizedBox(height: 10),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: Text("Observações"),
+                    child: Text("Justificativa"),
                   ),
                   TextFormField(
                     controller: ObservacoesController,

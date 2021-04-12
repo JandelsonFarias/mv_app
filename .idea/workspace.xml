@@ -12,10 +12,6 @@
     <list default="true" id="462d9e25-f387-4691-8a09-b33ebd61d60d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/helpers/db.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/helpers/db.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/ApontamentoPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/ApontamentoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/FormApontamento.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormApontamento.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/FormPrestacaoContas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/FormPrestacaoContas.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/PrestacaoContasAprovar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/PrestacaoContasAprovar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/validators/PrestacaoContasValidator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/validators/PrestacaoContasValidator.dart" afterDir="false" />
     </list>
@@ -55,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../FidelizefarmaApp/fidelizefarma_app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -122,10 +118,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1617881559155" />
-    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1618098368045">
+    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1618227605922">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618098368045" />
+    <state x="120" y="107" width="1720" height="840" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618227605922" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1618169975466">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

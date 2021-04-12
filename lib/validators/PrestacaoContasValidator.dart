@@ -39,7 +39,7 @@ class PrestacaoContasValidator {
   }
 
   String validateObservacoes(String Observacoes){
-    if(Observacoes == null || Observacoes.isEmpty) return "Informe as Observações";
+    if(Observacoes == null || Observacoes.isEmpty) return "Informe a Justificativa";
     return null;
   }
 }
