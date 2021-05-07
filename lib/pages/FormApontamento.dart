@@ -119,6 +119,7 @@ class _FormApontamentoState extends State<FormApontamento> with ApontamentoValid
           setState(() {
             ProjetoSelecionado = projeto;
             dowpDownMenuItems_projeto = _builddowpDownMenuItemsProjeto();
+            carregando = false;
           });
         }
         else

@@ -76,6 +76,8 @@ class _FormPrestacaoContasState extends State<FormPrestacaoContas> with Prestaca
 
               dowpDownMenuItems_projeto = _builddowpDownMenuItemsProjeto();
               dowpDownMenuItems_despesa = _builddowpDownMenuItemsDespesa();
+
+              carregando = false;
             });
           });
         }

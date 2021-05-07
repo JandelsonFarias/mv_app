@@ -149,50 +149,24 @@ class _SelecionarAtividadeState extends State<SelecionarAtividade> {
 
                       DateTime timeByDay = DateTime.parse(assignments[index].TimeByDay);
 
-                      return Card(
-                        child: Row(
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                    child: Text("${timeByDay.day}/${timeByDay.month}/${timeByDay.year}",
-                                      style: TextStyle(fontSize: 15.0),
-                                    ),
-                                    padding: EdgeInsets.only(left: 10.0)
-                                ),
-                                SizedBox(height: 5.0),
-                                Padding(
-                                    child: Text("${assignments[index].strTrabalhoPrevisto}",
-                                      style: TextStyle(fontSize: 14.0),
-                                    ),
-                                    padding: EdgeInsets.only(left: 10.0)
-                                )
-                              ],
-                            ),
-                            Spacer(),
-                            GestureDetector(
-                                onTap: (){
-                                  Apontamento apotamento = Apontamento();
-                                  apotamento.TaskUID = assignments[index].TaskUID;
-                                  apotamento.TaskName = apontamentoTasks.firstWhere((x) => x.TaskUID == assignments[index].TaskUID).TaskName;
-                                  apotamento.AssignmentUID = assignments[index].AssignmentUID;
-                                  apotamento.TimeByDay = assignments[index].TimeByDay;
+                      return
+                        GestureDetector(
+                            onTap: (){
+                              Apontamento apotamento = Apontamento();
+                              apotamento.TaskUID = assignments[index].TaskUID;
+                              apotamento.TaskName = apontamentoTasks.firstWhere((x) => x.TaskUID == assignments[index].TaskUID).TaskName;
+                              apotamento.AssignmentUID = assignments[index].AssignmentUID;
+                              apotamento.TimeByDay = assignments[index].TimeByDay;
 
-                                  Navigator.pop(context, apotamento);
-                                },
-                                child: Container(
-                                  width: 80.0,
-                                  height: 80.0,
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 30.0,
-                                  ),
-                                )
+                              Navigator.pop(context, apotamento);
+                            },
+                            child: Card(
+                              child: ListTile(
+                                title: Text("${timeByDay.day}/${timeByDay.month}/${timeByDay.year}"),
+                                subtitle: Text("${assignments[index].strTrabalhoPrevisto}"),
+                              )
                             )
-                          ],
-                        ),
-                      );
+                        );
                     },
                   )
                 ],

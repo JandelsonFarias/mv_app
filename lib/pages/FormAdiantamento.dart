@@ -67,6 +67,7 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
           setState(() {
             ProjetoSelecionado = projeto;
             dowpDownMenuItems_projeto = _builddowpDownMenuItemsProjeto();
+            carregando = false;
           });
         }
         else
@@ -111,7 +112,7 @@ class _FormAdiantamentoState extends State<FormAdiantamento> with AdiantamentoVa
         Projeto p = Projeto();
         p.ProjectUID = item["ProjectUID"];
         p.NomeProjeto = item["NomeProjeto"];
-        //Projetos.add(p);
+        Projetos.add(p);
       }
 
       setState(() {

@@ -528,7 +528,10 @@ class _PrestacaoContasAprovarState extends State<PrestacaoContasAprovar>  with P
 
                       for (Map map in widget.prestacaoContas["_PrestacaoContas"]){
                         PrestacaoContas pc_glosa = pcs_glosas.length > 0 ? pcs_glosas.firstWhere((element) => element.PrestacaoContasUID == map["PrestacaoContasUID"], orElse: (){return null;}) : null;
-                        prestacaoContasAprovacaoPOST.Pcs.add(pc_glosa?? PrestacaoContas.fromMap(map));
+                        if (pc_glosa != null)
+                          prestacaoContasAprovacaoPOST.Pcs.add(pc_glosa);
+                        else
+                          prestacaoContasAprovacaoPOST.Pcs.add(PrestacaoContas.fromWebMap(map));
                       }
 
                       await AprovarReprovarGrupo(prestacaoContasAprovacaoPOST);

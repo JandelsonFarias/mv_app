@@ -555,12 +555,25 @@ class PrestacaoContas {
     NomeProjeto = map[NomeProjetoColumn];
     CodigoGrupo = map[CodigoGrupoColumn];
     Data = map[DataColumn];
-    Valor = double.parse(map[ValorColumn]);
     Descricao = map[DescricaoColumn];
+    Valor = double.parse(map[ValorColumn]);
     AttachmentPath = map[AttachmentPathColumn];
     UsuarioUID = map[UsuarioUIDColumn];
     LinkAnexo = map[LinkAnexoColumn];
     Erros = map[ErrosColumn];
+  }
+
+  PrestacaoContas.fromWebMap(Map map){
+    PrestacaoContasUID = map["PrestacaoContasUID"];
+    DespesaUID = map["DespesaUID"];
+    NomeDespesa = map["NomeDespesa"];
+    ProjectUID = map["ProjectUID"];
+    Descricao = map["Descricao"];
+    Valor = map["Valor"];
+    UsuarioUID = map["UsuarioUID"];
+    LinkAnexo = map["LinkAnexo"];
+    Erros = map["Erros"];
+    JustificativaGP = map["JustificativaGP"];
   }
 
   Map toMap() {
@@ -583,15 +596,16 @@ class PrestacaoContas {
   }
 
   PrestacaoContas.fromJson(Map<String, dynamic> json)
-      : PrestacaoContasUID = json['PrestacaoContasUID'],
-       DespesaUID = json['DespesaUID'],
-       ProjectUID = json['ProjectUID'],
-       CodigoGrupo = json['CodigoGrupo'],
-       Data = json['Data'],
-       Valor = json['Valor'],
-       Descricao = json['Descricao'],
-       UsuarioUID = json['UsuarioUID'],
-      LinkAnexo = json['LinkAnexo']
+  : PrestacaoContasUID = json['PrestacaoContasUID'],
+    DespesaUID = json['DespesaUID'],
+    ProjectUID = json['ProjectUID'],
+    CodigoGrupo = json['CodigoGrupo'],
+    Data = json['Data'],
+    Valor = json['Valor'],
+    Descricao = json['Descricao'],
+    UsuarioUID = json['UsuarioUID'],
+    LinkAnexo = json['LinkAnexo'],
+    JustificativaGP = json['JustificativaGP']
   ;
 
   Map<String, dynamic> toJson() {
